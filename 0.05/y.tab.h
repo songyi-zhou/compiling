@@ -39,63 +39,75 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     VOID = 258,
-     FUNCTION = 259,
-     MAIN = 260,
-     INT = 261,
-     IF = 262,
-     WHILE = 263,
-     FOR = 264,
-     ELSE = 265,
-     WRITE = 266,
-     READ = 267,
-     CALL = 268,
-     NUM = 269,
-     ID = 270,
-     ADD = 271,
-     MIN = 272,
-     MUL = 273,
-     DIV = 274,
-     EQL = 275,
-     BLBRACKET = 276,
-     BRBRACKET = 277,
-     SLBRACKET = 278,
-     SRBRACKET = 279,
-     SEMICOLON = 280,
-     COMPARE = 281
+     FUNKTION = 258,
+     MAIN = 259,
+     INT = 260,
+     IF = 261,
+     WHILE = 262,
+     FOR = 263,
+     ELSE = 264,
+     WRITE = 265,
+     READ = 266,
+     CALL = 267,
+     NUM = 268,
+     ID = 269,
+     ADD = 270,
+     MIN = 271,
+     MUL = 272,
+     DIV = 273,
+     EQL = 274,
+     BLBRACKET = 275,
+     BRBRACKET = 276,
+     SLBRACKET = 277,
+     SRBRACKET = 278,
+     SEMICOLON = 279,
+     COMPARE = 280
    };
 #endif
 /* Tokens.  */
-#define VOID 258
-#define FUNCTION 259
-#define MAIN 260
-#define INT 261
-#define IF 262
-#define WHILE 263
-#define FOR 264
-#define ELSE 265
-#define WRITE 266
-#define READ 267
-#define CALL 268
-#define NUM 269
-#define ID 270
-#define ADD 271
-#define MIN 272
-#define MUL 273
-#define DIV 274
-#define EQL 275
-#define BLBRACKET 276
-#define BRBRACKET 277
-#define SLBRACKET 278
-#define SRBRACKET 279
-#define SEMICOLON 280
-#define COMPARE 281
+#define FUNKTION 258
+#define MAIN 259
+#define INT 260
+#define IF 261
+#define WHILE 262
+#define FOR 263
+#define ELSE 264
+#define WRITE 265
+#define READ 266
+#define CALL 267
+#define NUM 268
+#define ID 269
+#define ADD 270
+#define MIN 271
+#define MUL 272
+#define DIV 273
+#define EQL 274
+#define BLBRACKET 275
+#define BRBRACKET 276
+#define SLBRACKET 277
+#define SRBRACKET 278
+#define SEMICOLON 279
+#define COMPARE 280
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+{
+
+/* Line 1676 of yacc.c  */
+#line 12 "3-1.y"
+
+    int integer;
+    float floating_point;
+    char* string;
+
+
+
+/* Line 1676 of yacc.c  */
+#line 110 "y.tab.h"
+} YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
