@@ -7,22 +7,40 @@
 #define TRUE 1
 #endif
 #include "y.tab.h"
+extern int yylineno;
 %}
+%option yylineno
+
+NUM [0-9]+
+ALPHA [a-zA-Z]
+ID  {ALPHA}({ALPHA}|{NUM})*
+iderror {NUM}({ALPHA}|{NUM})*
+if [iI][fF]
+else [eE][lL][sS]
+for [fF][oO][rR]
+while [wW][hH][iI][lL][eE]
+int [iI][nN][tT]
+void [vV][oO][iI][dD]
+main    [mM][aA][iI][nN]
+function [fF][uU][cC][tT][iI][oO][nN]
+write [wW][rR][iI][tT][eE]
+call  [cC][aA][lL]
+read [rR][eE][aA][dD]
+
 
 %%
-[0-9]+ return NUM;
-if return IF;
-main return MAIN;
-int return INT;
-else return ELSE;
-for return FOR;
-while return WHILE;
-void return VOID;
-function return FUNCTION;
-write return WRITE;
-read return READ;
-call return CALL;
-[a-zA-Z]([a-zA-Z]|[0-9])+ return ID;
+{NUM} return NUM;
+{if} return IF;
+{main} {return MAIN;}
+{int} return INT;
+{else} return ELSE;
+{for} return FOR;
+{while} return WHILE;
+"function" return FUNKTION;
+{write} return WRITE;
+{read} return READ;
+{call} return CALL;
+{ID} return ID;
 "+"	return ADD;
 "-"	return MIN;
 "*"	return MUL;
@@ -67,8 +85,13 @@ call return CALL;
             }while(!done);
 
         }
-.
 
-\n /* ignore end of line */
-[ \t]+ /* ignore whitespace */
+{iderror} { 
+    fprintf(yyout,"line:%10d\t%10s,%10s\n", yylineno-1,"error",yytext);
+
+    }
+
+"\n" /* ignore end of line */{yylineno;}
+"[ \t]+" /* ignore whitespace */;
+.   
 %%
