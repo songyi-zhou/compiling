@@ -7,8 +7,10 @@ Ast newAst(char *name, int num, ...)
 {
     // 生成父节点
     tnode father = (tnode)malloc(sizeof(struct treeNode));
+    memset(father, 0, sizeof(struct treeNode));
     // 添加子节点
     tnode temp = (tnode)malloc(sizeof(struct treeNode));
+    memset(temp, 0, sizeof(struct treeNode));
     if (!father)
     {
         yyerror("create treenode error");
@@ -50,7 +52,8 @@ Ast newAst(char *name, int num, ...)
         if ((!strcmp(name, "ID")) || (!strcmp(name, "NUM")))
         {
             char *str;
-            str = (char *)malloc(sizeof(char) * 40);
+            str = (char *)malloc(sizeof(char) * 100);
+            memset(str, 0, sizeof(char) * 100);
             strcpy(str, yytext);
             father->id_type = str;
             // father->id_type = (char*)malloc(sizeof(char)*40);
@@ -127,8 +130,8 @@ int main(int argc, char **argv)
     {
         // 初始化节点记录列表
         nodeNum = 0;
-        memset(nodeList, 0, sizeof(tnode) * 5000);
-        memset(nodeIsChild, 0, sizeof(int) * 5000);
+        memset(nodeList, 0, sizeof(tnode) * 100);
+        memset(nodeIsChild, 0, sizeof(int) * 100);
         hasFault = 0;
 
         FILE *f = fopen(argv[i], "r");
