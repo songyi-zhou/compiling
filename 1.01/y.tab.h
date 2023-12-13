@@ -41,14 +41,14 @@
    enum yytokentype {
      FUNKTION = 258,
      MAIN = 259,
-     INT = 260,
-     IF = 261,
-     WHILE = 262,
-     FOR = 263,
-     ELSE = 264,
-     WRITE = 265,
-     READ = 266,
-     CALL = 267,
+     IF = 260,
+     WHILE = 261,
+     FOR = 262,
+     ELSE = 263,
+     WRITE = 264,
+     READ = 265,
+     CALL = 266,
+     INT = 267,
      NUM = 268,
      ID = 269,
      ADD = 270,
@@ -56,25 +56,25 @@
      MUL = 272,
      DIV = 273,
      EQL = 274,
-     BLBRACKET = 275,
-     BRBRACKET = 276,
-     SLBRACKET = 277,
-     SRBRACKET = 278,
-     SEMICOLON = 279,
-     COMPARE = 280
+     COMPARE = 275,
+     BLBRACKET = 276,
+     BRBRACKET = 277,
+     SLBRACKET = 278,
+     SRBRACKET = 279,
+     SEMICOLON = 280
    };
 #endif
 /* Tokens.  */
 #define FUNKTION 258
 #define MAIN 259
-#define INT 260
-#define IF 261
-#define WHILE 262
-#define FOR 263
-#define ELSE 264
-#define WRITE 265
-#define READ 266
-#define CALL 267
+#define IF 260
+#define WHILE 261
+#define FOR 262
+#define ELSE 263
+#define WRITE 264
+#define READ 265
+#define CALL 266
+#define INT 267
 #define NUM 268
 #define ID 269
 #define ADD 270
@@ -82,12 +82,12 @@
 #define MUL 272
 #define DIV 273
 #define EQL 274
-#define BLBRACKET 275
-#define BRBRACKET 276
-#define SLBRACKET 277
-#define SRBRACKET 278
-#define SEMICOLON 279
-#define COMPARE 280
+#define COMPARE 275
+#define BLBRACKET 276
+#define BRBRACKET 277
+#define SLBRACKET 278
+#define SRBRACKET 279
+#define SEMICOLON 280
 
 
 
@@ -97,11 +97,11 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 40 "3-1.y"
+#line 13 "3-1.y"
 
-    int integer;
-    float floating_point;
-    char* string;
+    tnode type_tnode;
+	// 这里声明double是为了防止出现指针错误（segmentation fault）
+	double d;
 
 
 

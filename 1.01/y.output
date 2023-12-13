@@ -1,40 +1,39 @@
-State 94 conflicts: 1 shift/reduce
+State 95 conflicts: 1 shift/reduce
 
 
 Grammar
 
     0 $accept: program $end
 
-    1 program: fun_de_list main_declaration
+    1 program: ExtDefList
 
-    2 fun_de_list: fun_de fun_de_list
-    3            | /* empty */
+    2 ExtDefList: main_declaration fun_de_list
 
-    4 fun_de: FUNKTION ID SLBRACKET SRBRACKET function_body
+    3 fun_de_list: fun_de fun_de_list
+    4            | /* empty */
 
-    5 main_declaration: MAIN SLBRACKET SRBRACKET function_body
+    5 fun_de: FUNKTION ID SLBRACKET SRBRACKET function_body
 
-    6 function_body: BLBRACKET declaration_list statement_list BRBRACKET
+    6 main_declaration: INT MAIN SLBRACKET SRBRACKET function_body
 
-    7 declaration_list: /* empty */
-    8                 | declaration_stat declaration_list
+    7 function_body: BLBRACKET declaration_list statement_list BRBRACKET
 
-    9 declaration_stat: INT ID SEMICOLON
+    8 declaration_list: /* empty */
+    9                 | declaration_stat declaration_list
 
-   10 statement_list: statement statement_list
-   11               | /* empty */
+   10 declaration_stat: INT ID SEMICOLON
 
-   12 statement: if_stat
-   13          | while_stat
-   14          | for_stat
-   15          | read_stat
-   16          | write_stat
-   17          | compound_stat
-   18          | expression_stat
+   11 statement_list: statement statement_list
+   12               | /* empty */
 
-   19 $@1: /* empty */
-
-   20 statement: call_stat $@1
+   13 statement: if_stat
+   14          | while_stat
+   15          | for_stat
+   16          | read_stat
+   17          | write_stat
+   18          | compound_stat
+   19          | expression_stat
+   20          | call_stat
 
    21 if_stat: IF SLBRACKET expr SRBRACKET statement else_stat
 
@@ -85,29 +84,29 @@ Terminals, with rules where they appear
 
 $end (0) 0
 error (256)
-FUNKTION (258) 4
-MAIN (259) 5
-INT (260) 9
-IF (261) 21
-WHILE (262) 24
-FOR (263) 25
-ELSE (264) 22
-WRITE (265) 26
-READ (266) 27
-CALL (267) 31
+FUNKTION (258) 5
+MAIN (259) 6
+IF (260) 21
+WHILE (261) 24
+FOR (262) 25
+ELSE (263) 22
+WRITE (264) 26
+READ (265) 27
+CALL (266) 31
+INT (267) 6 10
 NUM (268) 47
-ID (269) 4 9 27 31 32 46
+ID (269) 5 10 27 31 32 46
 ADD (270) 38
 MIN (271) 39
 MUL (272) 42
 DIV (273) 43
 EQL (274) 32
-BLBRACKET (275) 6 30
-BRBRACKET (276) 6 30
-SLBRACKET (277) 4 5 21 24 25 31 45
-SRBRACKET (278) 4 5 21 24 25 31 45
-SEMICOLON (279) 9 25 26 27 28 29
-COMPARE (280) 35
+COMPARE (275) 35
+BLBRACKET (276) 7 30
+BRBRACKET (277) 7 30
+SLBRACKET (278) 5 6 21 24 25 31 45
+SRBRACKET (279) 5 6 21 24 25 31 45
+SEMICOLON (280) 10 25 26 27 28 29
 
 
 Nonterminals, with rules where they appear
@@ -116,40 +115,40 @@ $accept (26)
     on left: 0
 program (27)
     on left: 1, on right: 0
-fun_de_list (28)
-    on left: 2 3, on right: 1 2
-fun_de (29)
-    on left: 4, on right: 2
-main_declaration (30)
-    on left: 5, on right: 1
-function_body (31)
-    on left: 6, on right: 4 5
-declaration_list (32)
-    on left: 7 8, on right: 6 8
-declaration_stat (33)
-    on left: 9, on right: 8
-statement_list (34)
-    on left: 10 11, on right: 6 10 30
-statement (35)
-    on left: 12 13 14 15 16 17 18 20, on right: 10 21 22 24 25
-$@1 (36)
-    on left: 19, on right: 20
+ExtDefList (28)
+    on left: 2, on right: 1
+fun_de_list (29)
+    on left: 3 4, on right: 2 3
+fun_de (30)
+    on left: 5, on right: 3
+main_declaration (31)
+    on left: 6, on right: 2
+function_body (32)
+    on left: 7, on right: 5 6
+declaration_list (33)
+    on left: 8 9, on right: 7 9
+declaration_stat (34)
+    on left: 10, on right: 9
+statement_list (35)
+    on left: 11 12, on right: 7 11 30
+statement (36)
+    on left: 13 14 15 16 17 18 19 20, on right: 11 21 22 24 25
 if_stat (37)
-    on left: 21, on right: 12
+    on left: 21, on right: 13
 else_stat (38)
     on left: 22 23, on right: 21
 while_stat (39)
-    on left: 24, on right: 13
+    on left: 24, on right: 14
 for_stat (40)
-    on left: 25, on right: 14
+    on left: 25, on right: 15
 write_stat (41)
-    on left: 26, on right: 16
+    on left: 26, on right: 17
 read_stat (42)
-    on left: 27, on right: 15
+    on left: 27, on right: 16
 expression_stat (43)
-    on left: 28 29, on right: 18
+    on left: 28 29, on right: 19
 compound_stat (44)
-    on left: 30, on right: 17
+    on left: 30, on right: 18
 call_stat (45)
     on left: 31, on right: 20
 expr (46)
@@ -174,20 +173,18 @@ state 0
 
     0 $accept: . program $end
 
-    FUNKTION  shift, and go to state 1
+    INT  shift, and go to state 1
 
-    $default  reduce using rule 3 (fun_de_list)
-
-    program      go to state 2
-    fun_de_list  go to state 3
-    fun_de       go to state 4
+    program           go to state 2
+    ExtDefList        go to state 3
+    main_declaration  go to state 4
 
 
 state 1
 
-    4 fun_de: FUNKTION . ID SLBRACKET SRBRACKET function_body
+    6 main_declaration: INT . MAIN SLBRACKET SRBRACKET function_body
 
-    ID  shift, and go to state 5
+    MAIN  shift, and go to state 5
 
 
 state 2
@@ -199,28 +196,26 @@ state 2
 
 state 3
 
-    1 program: fun_de_list . main_declaration
+    1 program: ExtDefList .
 
-    MAIN  shift, and go to state 7
-
-    main_declaration  go to state 8
+    $default  reduce using rule 1 (program)
 
 
 state 4
 
-    2 fun_de_list: fun_de . fun_de_list
+    2 ExtDefList: main_declaration . fun_de_list
 
-    FUNKTION  shift, and go to state 1
+    FUNKTION  shift, and go to state 7
 
-    $default  reduce using rule 3 (fun_de_list)
+    $default  reduce using rule 4 (fun_de_list)
 
-    fun_de_list  go to state 9
-    fun_de       go to state 4
+    fun_de_list  go to state 8
+    fun_de       go to state 9
 
 
 state 5
 
-    4 fun_de: FUNKTION ID . SLBRACKET SRBRACKET function_body
+    6 main_declaration: INT MAIN . SLBRACKET SRBRACKET function_body
 
     SLBRACKET  shift, and go to state 10
 
@@ -234,730 +229,728 @@ state 6
 
 state 7
 
-    5 main_declaration: MAIN . SLBRACKET SRBRACKET function_body
+    5 fun_de: FUNKTION . ID SLBRACKET SRBRACKET function_body
 
-    SLBRACKET  shift, and go to state 11
+    ID  shift, and go to state 11
 
 
 state 8
 
-    1 program: fun_de_list main_declaration .
+    2 ExtDefList: main_declaration fun_de_list .
 
-    $default  reduce using rule 1 (program)
+    $default  reduce using rule 2 (ExtDefList)
 
 
 state 9
 
-    2 fun_de_list: fun_de fun_de_list .
+    3 fun_de_list: fun_de . fun_de_list
 
-    $default  reduce using rule 2 (fun_de_list)
+    FUNKTION  shift, and go to state 7
+
+    $default  reduce using rule 4 (fun_de_list)
+
+    fun_de_list  go to state 12
+    fun_de       go to state 9
 
 
 state 10
 
-    4 fun_de: FUNKTION ID SLBRACKET . SRBRACKET function_body
-
-    SRBRACKET  shift, and go to state 12
-
-
-state 11
-
-    5 main_declaration: MAIN SLBRACKET . SRBRACKET function_body
+    6 main_declaration: INT MAIN SLBRACKET . SRBRACKET function_body
 
     SRBRACKET  shift, and go to state 13
 
 
+state 11
+
+    5 fun_de: FUNKTION ID . SLBRACKET SRBRACKET function_body
+
+    SLBRACKET  shift, and go to state 14
+
+
 state 12
 
-    4 fun_de: FUNKTION ID SLBRACKET SRBRACKET . function_body
+    3 fun_de_list: fun_de fun_de_list .
 
-    BLBRACKET  shift, and go to state 14
-
-    function_body  go to state 15
+    $default  reduce using rule 3 (fun_de_list)
 
 
 state 13
 
-    5 main_declaration: MAIN SLBRACKET SRBRACKET . function_body
+    6 main_declaration: INT MAIN SLBRACKET SRBRACKET . function_body
 
-    BLBRACKET  shift, and go to state 14
+    BLBRACKET  shift, and go to state 15
 
     function_body  go to state 16
 
 
 state 14
 
-    6 function_body: BLBRACKET . declaration_list statement_list BRBRACKET
+    5 fun_de: FUNKTION ID SLBRACKET . SRBRACKET function_body
 
-    INT  shift, and go to state 17
-
-    $default  reduce using rule 7 (declaration_list)
-
-    declaration_list  go to state 18
-    declaration_stat  go to state 19
+    SRBRACKET  shift, and go to state 17
 
 
 state 15
 
-    4 fun_de: FUNKTION ID SLBRACKET SRBRACKET function_body .
+    7 function_body: BLBRACKET . declaration_list statement_list BRBRACKET
 
-    $default  reduce using rule 4 (fun_de)
+    INT  shift, and go to state 18
+
+    $default  reduce using rule 8 (declaration_list)
+
+    declaration_list  go to state 19
+    declaration_stat  go to state 20
 
 
 state 16
 
-    5 main_declaration: MAIN SLBRACKET SRBRACKET function_body .
+    6 main_declaration: INT MAIN SLBRACKET SRBRACKET function_body .
 
-    $default  reduce using rule 5 (main_declaration)
+    $default  reduce using rule 6 (main_declaration)
 
 
 state 17
 
-    9 declaration_stat: INT . ID SEMICOLON
+    5 fun_de: FUNKTION ID SLBRACKET SRBRACKET . function_body
 
-    ID  shift, and go to state 20
+    BLBRACKET  shift, and go to state 15
+
+    function_body  go to state 21
 
 
 state 18
 
-    6 function_body: BLBRACKET declaration_list . statement_list BRBRACKET
+   10 declaration_stat: INT . ID SEMICOLON
 
-    IF         shift, and go to state 21
-    WHILE      shift, and go to state 22
-    FOR        shift, and go to state 23
-    WRITE      shift, and go to state 24
-    READ       shift, and go to state 25
-    CALL       shift, and go to state 26
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    BLBRACKET  shift, and go to state 29
-    SLBRACKET  shift, and go to state 30
-    SEMICOLON  shift, and go to state 31
-
-    $default  reduce using rule 11 (statement_list)
-
-    statement_list   go to state 32
-    statement        go to state 33
-    if_stat          go to state 34
-    while_stat       go to state 35
-    for_stat         go to state 36
-    write_stat       go to state 37
-    read_stat        go to state 38
-    expression_stat  go to state 39
-    compound_stat    go to state 40
-    call_stat        go to state 41
-    expr             go to state 42
-    bool_expr        go to state 43
-    additive_expr    go to state 44
-    term             go to state 45
-    factor           go to state 46
+    ID  shift, and go to state 22
 
 
 state 19
 
-    8 declaration_list: declaration_stat . declaration_list
+    7 function_body: BLBRACKET declaration_list . statement_list BRBRACKET
 
-    INT  shift, and go to state 17
+    IF         shift, and go to state 23
+    WHILE      shift, and go to state 24
+    FOR        shift, and go to state 25
+    WRITE      shift, and go to state 26
+    READ       shift, and go to state 27
+    CALL       shift, and go to state 28
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    BLBRACKET  shift, and go to state 31
+    SLBRACKET  shift, and go to state 32
+    SEMICOLON  shift, and go to state 33
 
-    $default  reduce using rule 7 (declaration_list)
+    $default  reduce using rule 12 (statement_list)
 
-    declaration_list  go to state 47
-    declaration_stat  go to state 19
+    statement_list   go to state 34
+    statement        go to state 35
+    if_stat          go to state 36
+    while_stat       go to state 37
+    for_stat         go to state 38
+    write_stat       go to state 39
+    read_stat        go to state 40
+    expression_stat  go to state 41
+    compound_stat    go to state 42
+    call_stat        go to state 43
+    expr             go to state 44
+    bool_expr        go to state 45
+    additive_expr    go to state 46
+    term             go to state 47
+    factor           go to state 48
 
 
 state 20
 
-    9 declaration_stat: INT ID . SEMICOLON
+    9 declaration_list: declaration_stat . declaration_list
 
-    SEMICOLON  shift, and go to state 48
+    INT  shift, and go to state 18
+
+    $default  reduce using rule 8 (declaration_list)
+
+    declaration_list  go to state 49
+    declaration_stat  go to state 20
 
 
 state 21
 
-   21 if_stat: IF . SLBRACKET expr SRBRACKET statement else_stat
+    5 fun_de: FUNKTION ID SLBRACKET SRBRACKET function_body .
 
-    SLBRACKET  shift, and go to state 49
+    $default  reduce using rule 5 (fun_de)
 
 
 state 22
 
-   24 while_stat: WHILE . SLBRACKET expr SRBRACKET statement
+   10 declaration_stat: INT ID . SEMICOLON
 
-    SLBRACKET  shift, and go to state 50
+    SEMICOLON  shift, and go to state 50
 
 
 state 23
 
-   25 for_stat: FOR . SLBRACKET expr SEMICOLON expr SEMICOLON expr SRBRACKET statement
+   21 if_stat: IF . SLBRACKET expr SRBRACKET statement else_stat
 
     SLBRACKET  shift, and go to state 51
 
 
 state 24
 
-   26 write_stat: WRITE . expr SEMICOLON
+   24 while_stat: WHILE . SLBRACKET expr SRBRACKET statement
 
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    SLBRACKET  shift, and go to state 30
-
-    expr           go to state 52
-    bool_expr      go to state 43
-    additive_expr  go to state 44
-    term           go to state 45
-    factor         go to state 46
+    SLBRACKET  shift, and go to state 52
 
 
 state 25
 
-   27 read_stat: READ . ID SEMICOLON
+   25 for_stat: FOR . SLBRACKET expr SEMICOLON expr SEMICOLON expr SRBRACKET statement
 
-    ID  shift, and go to state 53
+    SLBRACKET  shift, and go to state 53
 
 
 state 26
 
-   31 call_stat: CALL . ID SLBRACKET SRBRACKET
+   26 write_stat: WRITE . expr SEMICOLON
 
-    ID  shift, and go to state 54
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    SLBRACKET  shift, and go to state 32
+
+    expr           go to state 54
+    bool_expr      go to state 45
+    additive_expr  go to state 46
+    term           go to state 47
+    factor         go to state 48
 
 
 state 27
+
+   27 read_stat: READ . ID SEMICOLON
+
+    ID  shift, and go to state 55
+
+
+state 28
+
+   31 call_stat: CALL . ID SLBRACKET SRBRACKET
+
+    ID  shift, and go to state 56
+
+
+state 29
 
    47 factor: NUM .
 
     $default  reduce using rule 47 (factor)
 
 
-state 28
+state 30
 
    32 expr: ID . EQL bool_expr
    46 factor: ID .
 
-    EQL  shift, and go to state 55
+    EQL  shift, and go to state 57
 
     $default  reduce using rule 46 (factor)
 
 
-state 29
+state 31
 
    30 compound_stat: BLBRACKET . statement_list BRBRACKET
 
-    IF         shift, and go to state 21
-    WHILE      shift, and go to state 22
-    FOR        shift, and go to state 23
-    WRITE      shift, and go to state 24
-    READ       shift, and go to state 25
-    CALL       shift, and go to state 26
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    BLBRACKET  shift, and go to state 29
-    SLBRACKET  shift, and go to state 30
-    SEMICOLON  shift, and go to state 31
+    IF         shift, and go to state 23
+    WHILE      shift, and go to state 24
+    FOR        shift, and go to state 25
+    WRITE      shift, and go to state 26
+    READ       shift, and go to state 27
+    CALL       shift, and go to state 28
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    BLBRACKET  shift, and go to state 31
+    SLBRACKET  shift, and go to state 32
+    SEMICOLON  shift, and go to state 33
 
-    $default  reduce using rule 11 (statement_list)
+    $default  reduce using rule 12 (statement_list)
 
-    statement_list   go to state 56
-    statement        go to state 33
-    if_stat          go to state 34
-    while_stat       go to state 35
-    for_stat         go to state 36
-    write_stat       go to state 37
-    read_stat        go to state 38
-    expression_stat  go to state 39
-    compound_stat    go to state 40
-    call_stat        go to state 41
-    expr             go to state 42
-    bool_expr        go to state 43
-    additive_expr    go to state 44
-    term             go to state 45
-    factor           go to state 46
+    statement_list   go to state 58
+    statement        go to state 35
+    if_stat          go to state 36
+    while_stat       go to state 37
+    for_stat         go to state 38
+    write_stat       go to state 39
+    read_stat        go to state 40
+    expression_stat  go to state 41
+    compound_stat    go to state 42
+    call_stat        go to state 43
+    expr             go to state 44
+    bool_expr        go to state 45
+    additive_expr    go to state 46
+    term             go to state 47
+    factor           go to state 48
 
 
-state 30
+state 32
 
    45 factor: SLBRACKET . additive_expr SRBRACKET
 
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 57
-    SLBRACKET  shift, and go to state 30
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 59
+    SLBRACKET  shift, and go to state 32
 
-    additive_expr  go to state 58
-    term           go to state 45
-    factor         go to state 46
+    additive_expr  go to state 60
+    term           go to state 47
+    factor         go to state 48
 
 
-state 31
+state 33
 
    29 expression_stat: SEMICOLON .
 
     $default  reduce using rule 29 (expression_stat)
 
 
-state 32
-
-    6 function_body: BLBRACKET declaration_list statement_list . BRBRACKET
-
-    BRBRACKET  shift, and go to state 59
-
-
-state 33
-
-   10 statement_list: statement . statement_list
-
-    IF         shift, and go to state 21
-    WHILE      shift, and go to state 22
-    FOR        shift, and go to state 23
-    WRITE      shift, and go to state 24
-    READ       shift, and go to state 25
-    CALL       shift, and go to state 26
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    BLBRACKET  shift, and go to state 29
-    SLBRACKET  shift, and go to state 30
-    SEMICOLON  shift, and go to state 31
-
-    $default  reduce using rule 11 (statement_list)
-
-    statement_list   go to state 60
-    statement        go to state 33
-    if_stat          go to state 34
-    while_stat       go to state 35
-    for_stat         go to state 36
-    write_stat       go to state 37
-    read_stat        go to state 38
-    expression_stat  go to state 39
-    compound_stat    go to state 40
-    call_stat        go to state 41
-    expr             go to state 42
-    bool_expr        go to state 43
-    additive_expr    go to state 44
-    term             go to state 45
-    factor           go to state 46
-
-
 state 34
 
-   12 statement: if_stat .
+    7 function_body: BLBRACKET declaration_list statement_list . BRBRACKET
 
-    $default  reduce using rule 12 (statement)
+    BRBRACKET  shift, and go to state 61
 
 
 state 35
 
-   13 statement: while_stat .
+   11 statement_list: statement . statement_list
 
-    $default  reduce using rule 13 (statement)
+    IF         shift, and go to state 23
+    WHILE      shift, and go to state 24
+    FOR        shift, and go to state 25
+    WRITE      shift, and go to state 26
+    READ       shift, and go to state 27
+    CALL       shift, and go to state 28
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    BLBRACKET  shift, and go to state 31
+    SLBRACKET  shift, and go to state 32
+    SEMICOLON  shift, and go to state 33
+
+    $default  reduce using rule 12 (statement_list)
+
+    statement_list   go to state 62
+    statement        go to state 35
+    if_stat          go to state 36
+    while_stat       go to state 37
+    for_stat         go to state 38
+    write_stat       go to state 39
+    read_stat        go to state 40
+    expression_stat  go to state 41
+    compound_stat    go to state 42
+    call_stat        go to state 43
+    expr             go to state 44
+    bool_expr        go to state 45
+    additive_expr    go to state 46
+    term             go to state 47
+    factor           go to state 48
 
 
 state 36
 
-   14 statement: for_stat .
+   13 statement: if_stat .
 
-    $default  reduce using rule 14 (statement)
+    $default  reduce using rule 13 (statement)
 
 
 state 37
 
-   16 statement: write_stat .
+   14 statement: while_stat .
 
-    $default  reduce using rule 16 (statement)
+    $default  reduce using rule 14 (statement)
 
 
 state 38
 
-   15 statement: read_stat .
+   15 statement: for_stat .
 
     $default  reduce using rule 15 (statement)
 
 
 state 39
 
-   18 statement: expression_stat .
-
-    $default  reduce using rule 18 (statement)
-
-
-state 40
-
-   17 statement: compound_stat .
+   17 statement: write_stat .
 
     $default  reduce using rule 17 (statement)
 
 
+state 40
+
+   16 statement: read_stat .
+
+    $default  reduce using rule 16 (statement)
+
+
 state 41
 
-   20 statement: call_stat . $@1
+   19 statement: expression_stat .
 
-    $default  reduce using rule 19 ($@1)
-
-    $@1  go to state 61
+    $default  reduce using rule 19 (statement)
 
 
 state 42
 
-   28 expression_stat: expr . SEMICOLON
+   18 statement: compound_stat .
 
-    SEMICOLON  shift, and go to state 62
+    $default  reduce using rule 18 (statement)
 
 
 state 43
+
+   20 statement: call_stat .
+
+    $default  reduce using rule 20 (statement)
+
+
+state 44
+
+   28 expression_stat: expr . SEMICOLON
+
+    SEMICOLON  shift, and go to state 63
+
+
+state 45
 
    33 expr: bool_expr .
 
     $default  reduce using rule 33 (expr)
 
 
-state 44
+state 46
 
    34 bool_expr: additive_expr . bool_expr_rest
 
-    COMPARE  shift, and go to state 63
+    COMPARE  shift, and go to state 64
 
     $default  reduce using rule 36 (bool_expr_rest)
 
-    bool_expr_rest  go to state 64
-
-
-state 45
-
-   37 additive_expr: term . additive_expr_rest
-
-    ADD  shift, and go to state 65
-    MIN  shift, and go to state 66
-
-    $default  reduce using rule 40 (additive_expr_rest)
-
-    additive_expr_rest  go to state 67
-
-
-state 46
-
-   41 term: factor . term_rest
-
-    MUL  shift, and go to state 68
-    DIV  shift, and go to state 69
-
-    $default  reduce using rule 44 (term_rest)
-
-    term_rest  go to state 70
+    bool_expr_rest  go to state 65
 
 
 state 47
 
-    8 declaration_list: declaration_stat declaration_list .
+   37 additive_expr: term . additive_expr_rest
 
-    $default  reduce using rule 8 (declaration_list)
+    ADD  shift, and go to state 66
+    MIN  shift, and go to state 67
+
+    $default  reduce using rule 40 (additive_expr_rest)
+
+    additive_expr_rest  go to state 68
 
 
 state 48
 
-    9 declaration_stat: INT ID SEMICOLON .
+   41 term: factor . term_rest
 
-    $default  reduce using rule 9 (declaration_stat)
+    MUL  shift, and go to state 69
+    DIV  shift, and go to state 70
+
+    $default  reduce using rule 44 (term_rest)
+
+    term_rest  go to state 71
 
 
 state 49
 
-   21 if_stat: IF SLBRACKET . expr SRBRACKET statement else_stat
+    9 declaration_list: declaration_stat declaration_list .
 
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    SLBRACKET  shift, and go to state 30
-
-    expr           go to state 71
-    bool_expr      go to state 43
-    additive_expr  go to state 44
-    term           go to state 45
-    factor         go to state 46
+    $default  reduce using rule 9 (declaration_list)
 
 
 state 50
 
-   24 while_stat: WHILE SLBRACKET . expr SRBRACKET statement
+   10 declaration_stat: INT ID SEMICOLON .
 
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    SLBRACKET  shift, and go to state 30
-
-    expr           go to state 72
-    bool_expr      go to state 43
-    additive_expr  go to state 44
-    term           go to state 45
-    factor         go to state 46
+    $default  reduce using rule 10 (declaration_stat)
 
 
 state 51
 
-   25 for_stat: FOR SLBRACKET . expr SEMICOLON expr SEMICOLON expr SRBRACKET statement
+   21 if_stat: IF SLBRACKET . expr SRBRACKET statement else_stat
 
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    SLBRACKET  shift, and go to state 30
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    SLBRACKET  shift, and go to state 32
 
-    expr           go to state 73
-    bool_expr      go to state 43
-    additive_expr  go to state 44
-    term           go to state 45
-    factor         go to state 46
+    expr           go to state 72
+    bool_expr      go to state 45
+    additive_expr  go to state 46
+    term           go to state 47
+    factor         go to state 48
 
 
 state 52
 
-   26 write_stat: WRITE expr . SEMICOLON
+   24 while_stat: WHILE SLBRACKET . expr SRBRACKET statement
 
-    SEMICOLON  shift, and go to state 74
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    SLBRACKET  shift, and go to state 32
+
+    expr           go to state 73
+    bool_expr      go to state 45
+    additive_expr  go to state 46
+    term           go to state 47
+    factor         go to state 48
 
 
 state 53
 
-   27 read_stat: READ ID . SEMICOLON
+   25 for_stat: FOR SLBRACKET . expr SEMICOLON expr SEMICOLON expr SRBRACKET statement
 
-    SEMICOLON  shift, and go to state 75
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    SLBRACKET  shift, and go to state 32
+
+    expr           go to state 74
+    bool_expr      go to state 45
+    additive_expr  go to state 46
+    term           go to state 47
+    factor         go to state 48
 
 
 state 54
 
-   31 call_stat: CALL ID . SLBRACKET SRBRACKET
+   26 write_stat: WRITE expr . SEMICOLON
 
-    SLBRACKET  shift, and go to state 76
+    SEMICOLON  shift, and go to state 75
 
 
 state 55
 
-   32 expr: ID EQL . bool_expr
+   27 read_stat: READ ID . SEMICOLON
 
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 57
-    SLBRACKET  shift, and go to state 30
-
-    bool_expr      go to state 77
-    additive_expr  go to state 44
-    term           go to state 45
-    factor         go to state 46
+    SEMICOLON  shift, and go to state 76
 
 
 state 56
 
-   30 compound_stat: BLBRACKET statement_list . BRBRACKET
+   31 call_stat: CALL ID . SLBRACKET SRBRACKET
 
-    BRBRACKET  shift, and go to state 78
+    SLBRACKET  shift, and go to state 77
 
 
 state 57
+
+   32 expr: ID EQL . bool_expr
+
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 59
+    SLBRACKET  shift, and go to state 32
+
+    bool_expr      go to state 78
+    additive_expr  go to state 46
+    term           go to state 47
+    factor         go to state 48
+
+
+state 58
+
+   30 compound_stat: BLBRACKET statement_list . BRBRACKET
+
+    BRBRACKET  shift, and go to state 79
+
+
+state 59
 
    46 factor: ID .
 
     $default  reduce using rule 46 (factor)
 
 
-state 58
+state 60
 
    45 factor: SLBRACKET additive_expr . SRBRACKET
 
-    SRBRACKET  shift, and go to state 79
-
-
-state 59
-
-    6 function_body: BLBRACKET declaration_list statement_list BRBRACKET .
-
-    $default  reduce using rule 6 (function_body)
-
-
-state 60
-
-   10 statement_list: statement statement_list .
-
-    $default  reduce using rule 10 (statement_list)
+    SRBRACKET  shift, and go to state 80
 
 
 state 61
 
-   20 statement: call_stat $@1 .
+    7 function_body: BLBRACKET declaration_list statement_list BRBRACKET .
 
-    $default  reduce using rule 20 (statement)
+    $default  reduce using rule 7 (function_body)
 
 
 state 62
+
+   11 statement_list: statement statement_list .
+
+    $default  reduce using rule 11 (statement_list)
+
+
+state 63
 
    28 expression_stat: expr SEMICOLON .
 
     $default  reduce using rule 28 (expression_stat)
 
 
-state 63
+state 64
 
    35 bool_expr_rest: COMPARE . additive_expr bool_expr_rest
 
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 57
-    SLBRACKET  shift, and go to state 30
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 59
+    SLBRACKET  shift, and go to state 32
 
-    additive_expr  go to state 80
-    term           go to state 45
-    factor         go to state 46
+    additive_expr  go to state 81
+    term           go to state 47
+    factor         go to state 48
 
 
-state 64
+state 65
 
    34 bool_expr: additive_expr bool_expr_rest .
 
     $default  reduce using rule 34 (bool_expr)
 
 
-state 65
+state 66
 
    38 additive_expr_rest: ADD . term additive_expr_rest
 
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 57
-    SLBRACKET  shift, and go to state 30
-
-    term    go to state 81
-    factor  go to state 46
-
-
-state 66
-
-   39 additive_expr_rest: MIN . term additive_expr_rest
-
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 57
-    SLBRACKET  shift, and go to state 30
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 59
+    SLBRACKET  shift, and go to state 32
 
     term    go to state 82
-    factor  go to state 46
+    factor  go to state 48
 
 
 state 67
+
+   39 additive_expr_rest: MIN . term additive_expr_rest
+
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 59
+    SLBRACKET  shift, and go to state 32
+
+    term    go to state 83
+    factor  go to state 48
+
+
+state 68
 
    37 additive_expr: term additive_expr_rest .
 
     $default  reduce using rule 37 (additive_expr)
 
 
-state 68
+state 69
 
    42 term_rest: MUL . factor term_rest
 
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 57
-    SLBRACKET  shift, and go to state 30
-
-    factor  go to state 83
-
-
-state 69
-
-   43 term_rest: DIV . factor term_rest
-
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 57
-    SLBRACKET  shift, and go to state 30
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 59
+    SLBRACKET  shift, and go to state 32
 
     factor  go to state 84
 
 
 state 70
 
+   43 term_rest: DIV . factor term_rest
+
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 59
+    SLBRACKET  shift, and go to state 32
+
+    factor  go to state 85
+
+
+state 71
+
    41 term: factor term_rest .
 
     $default  reduce using rule 41 (term)
 
 
-state 71
-
-   21 if_stat: IF SLBRACKET expr . SRBRACKET statement else_stat
-
-    SRBRACKET  shift, and go to state 85
-
-
 state 72
 
-   24 while_stat: WHILE SLBRACKET expr . SRBRACKET statement
+   21 if_stat: IF SLBRACKET expr . SRBRACKET statement else_stat
 
     SRBRACKET  shift, and go to state 86
 
 
 state 73
 
-   25 for_stat: FOR SLBRACKET expr . SEMICOLON expr SEMICOLON expr SRBRACKET statement
+   24 while_stat: WHILE SLBRACKET expr . SRBRACKET statement
 
-    SEMICOLON  shift, and go to state 87
+    SRBRACKET  shift, and go to state 87
 
 
 state 74
+
+   25 for_stat: FOR SLBRACKET expr . SEMICOLON expr SEMICOLON expr SRBRACKET statement
+
+    SEMICOLON  shift, and go to state 88
+
+
+state 75
 
    26 write_stat: WRITE expr SEMICOLON .
 
     $default  reduce using rule 26 (write_stat)
 
 
-state 75
+state 76
 
    27 read_stat: READ ID SEMICOLON .
 
     $default  reduce using rule 27 (read_stat)
 
 
-state 76
+state 77
 
    31 call_stat: CALL ID SLBRACKET . SRBRACKET
 
-    SRBRACKET  shift, and go to state 88
+    SRBRACKET  shift, and go to state 89
 
 
-state 77
+state 78
 
    32 expr: ID EQL bool_expr .
 
     $default  reduce using rule 32 (expr)
 
 
-state 78
+state 79
 
    30 compound_stat: BLBRACKET statement_list BRBRACKET .
 
     $default  reduce using rule 30 (compound_stat)
 
 
-state 79
+state 80
 
    45 factor: SLBRACKET additive_expr SRBRACKET .
 
     $default  reduce using rule 45 (factor)
 
 
-state 80
+state 81
 
    35 bool_expr_rest: COMPARE additive_expr . bool_expr_rest
 
-    COMPARE  shift, and go to state 63
+    COMPARE  shift, and go to state 64
 
     $default  reduce using rule 36 (bool_expr_rest)
 
-    bool_expr_rest  go to state 89
-
-
-state 81
-
-   38 additive_expr_rest: ADD term . additive_expr_rest
-
-    ADD  shift, and go to state 65
-    MIN  shift, and go to state 66
-
-    $default  reduce using rule 40 (additive_expr_rest)
-
-    additive_expr_rest  go to state 90
+    bool_expr_rest  go to state 90
 
 
 state 82
 
-   39 additive_expr_rest: MIN term . additive_expr_rest
+   38 additive_expr_rest: ADD term . additive_expr_rest
 
-    ADD  shift, and go to state 65
-    MIN  shift, and go to state 66
+    ADD  shift, and go to state 66
+    MIN  shift, and go to state 67
 
     $default  reduce using rule 40 (additive_expr_rest)
 
@@ -966,22 +959,22 @@ state 82
 
 state 83
 
-   42 term_rest: MUL factor . term_rest
+   39 additive_expr_rest: MIN term . additive_expr_rest
 
-    MUL  shift, and go to state 68
-    DIV  shift, and go to state 69
+    ADD  shift, and go to state 66
+    MIN  shift, and go to state 67
 
-    $default  reduce using rule 44 (term_rest)
+    $default  reduce using rule 40 (additive_expr_rest)
 
-    term_rest  go to state 92
+    additive_expr_rest  go to state 92
 
 
 state 84
 
-   43 term_rest: DIV factor . term_rest
+   42 term_rest: MUL factor . term_rest
 
-    MUL  shift, and go to state 68
-    DIV  shift, and go to state 69
+    MUL  shift, and go to state 69
+    DIV  shift, and go to state 70
 
     $default  reduce using rule 44 (term_rest)
 
@@ -990,252 +983,264 @@ state 84
 
 state 85
 
-   21 if_stat: IF SLBRACKET expr SRBRACKET . statement else_stat
+   43 term_rest: DIV factor . term_rest
 
-    IF         shift, and go to state 21
-    WHILE      shift, and go to state 22
-    FOR        shift, and go to state 23
-    WRITE      shift, and go to state 24
-    READ       shift, and go to state 25
-    CALL       shift, and go to state 26
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    BLBRACKET  shift, and go to state 29
-    SLBRACKET  shift, and go to state 30
-    SEMICOLON  shift, and go to state 31
+    MUL  shift, and go to state 69
+    DIV  shift, and go to state 70
 
-    statement        go to state 94
-    if_stat          go to state 34
-    while_stat       go to state 35
-    for_stat         go to state 36
-    write_stat       go to state 37
-    read_stat        go to state 38
-    expression_stat  go to state 39
-    compound_stat    go to state 40
-    call_stat        go to state 41
-    expr             go to state 42
-    bool_expr        go to state 43
-    additive_expr    go to state 44
-    term             go to state 45
-    factor           go to state 46
+    $default  reduce using rule 44 (term_rest)
+
+    term_rest  go to state 94
 
 
 state 86
 
-   24 while_stat: WHILE SLBRACKET expr SRBRACKET . statement
+   21 if_stat: IF SLBRACKET expr SRBRACKET . statement else_stat
 
-    IF         shift, and go to state 21
-    WHILE      shift, and go to state 22
-    FOR        shift, and go to state 23
-    WRITE      shift, and go to state 24
-    READ       shift, and go to state 25
-    CALL       shift, and go to state 26
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    BLBRACKET  shift, and go to state 29
-    SLBRACKET  shift, and go to state 30
-    SEMICOLON  shift, and go to state 31
+    IF         shift, and go to state 23
+    WHILE      shift, and go to state 24
+    FOR        shift, and go to state 25
+    WRITE      shift, and go to state 26
+    READ       shift, and go to state 27
+    CALL       shift, and go to state 28
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    BLBRACKET  shift, and go to state 31
+    SLBRACKET  shift, and go to state 32
+    SEMICOLON  shift, and go to state 33
 
     statement        go to state 95
-    if_stat          go to state 34
-    while_stat       go to state 35
-    for_stat         go to state 36
-    write_stat       go to state 37
-    read_stat        go to state 38
-    expression_stat  go to state 39
-    compound_stat    go to state 40
-    call_stat        go to state 41
-    expr             go to state 42
-    bool_expr        go to state 43
-    additive_expr    go to state 44
-    term             go to state 45
-    factor           go to state 46
+    if_stat          go to state 36
+    while_stat       go to state 37
+    for_stat         go to state 38
+    write_stat       go to state 39
+    read_stat        go to state 40
+    expression_stat  go to state 41
+    compound_stat    go to state 42
+    call_stat        go to state 43
+    expr             go to state 44
+    bool_expr        go to state 45
+    additive_expr    go to state 46
+    term             go to state 47
+    factor           go to state 48
 
 
 state 87
 
-   25 for_stat: FOR SLBRACKET expr SEMICOLON . expr SEMICOLON expr SRBRACKET statement
+   24 while_stat: WHILE SLBRACKET expr SRBRACKET . statement
 
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    SLBRACKET  shift, and go to state 30
+    IF         shift, and go to state 23
+    WHILE      shift, and go to state 24
+    FOR        shift, and go to state 25
+    WRITE      shift, and go to state 26
+    READ       shift, and go to state 27
+    CALL       shift, and go to state 28
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    BLBRACKET  shift, and go to state 31
+    SLBRACKET  shift, and go to state 32
+    SEMICOLON  shift, and go to state 33
 
-    expr           go to state 96
-    bool_expr      go to state 43
-    additive_expr  go to state 44
-    term           go to state 45
-    factor         go to state 46
+    statement        go to state 96
+    if_stat          go to state 36
+    while_stat       go to state 37
+    for_stat         go to state 38
+    write_stat       go to state 39
+    read_stat        go to state 40
+    expression_stat  go to state 41
+    compound_stat    go to state 42
+    call_stat        go to state 43
+    expr             go to state 44
+    bool_expr        go to state 45
+    additive_expr    go to state 46
+    term             go to state 47
+    factor           go to state 48
 
 
 state 88
+
+   25 for_stat: FOR SLBRACKET expr SEMICOLON . expr SEMICOLON expr SRBRACKET statement
+
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    SLBRACKET  shift, and go to state 32
+
+    expr           go to state 97
+    bool_expr      go to state 45
+    additive_expr  go to state 46
+    term           go to state 47
+    factor         go to state 48
+
+
+state 89
 
    31 call_stat: CALL ID SLBRACKET SRBRACKET .
 
     $default  reduce using rule 31 (call_stat)
 
 
-state 89
+state 90
 
    35 bool_expr_rest: COMPARE additive_expr bool_expr_rest .
 
     $default  reduce using rule 35 (bool_expr_rest)
 
 
-state 90
+state 91
 
    38 additive_expr_rest: ADD term additive_expr_rest .
 
     $default  reduce using rule 38 (additive_expr_rest)
 
 
-state 91
+state 92
 
    39 additive_expr_rest: MIN term additive_expr_rest .
 
     $default  reduce using rule 39 (additive_expr_rest)
 
 
-state 92
+state 93
 
    42 term_rest: MUL factor term_rest .
 
     $default  reduce using rule 42 (term_rest)
 
 
-state 93
+state 94
 
    43 term_rest: DIV factor term_rest .
 
     $default  reduce using rule 43 (term_rest)
 
 
-state 94
+state 95
 
    21 if_stat: IF SLBRACKET expr SRBRACKET statement . else_stat
 
-    ELSE  shift, and go to state 97
+    ELSE  shift, and go to state 98
 
     ELSE      [reduce using rule 23 (else_stat)]
     $default  reduce using rule 23 (else_stat)
 
-    else_stat  go to state 98
+    else_stat  go to state 99
 
 
-state 95
+state 96
 
    24 while_stat: WHILE SLBRACKET expr SRBRACKET statement .
 
     $default  reduce using rule 24 (while_stat)
 
 
-state 96
+state 97
 
    25 for_stat: FOR SLBRACKET expr SEMICOLON expr . SEMICOLON expr SRBRACKET statement
 
-    SEMICOLON  shift, and go to state 99
-
-
-state 97
-
-   22 else_stat: ELSE . statement
-
-    IF         shift, and go to state 21
-    WHILE      shift, and go to state 22
-    FOR        shift, and go to state 23
-    WRITE      shift, and go to state 24
-    READ       shift, and go to state 25
-    CALL       shift, and go to state 26
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    BLBRACKET  shift, and go to state 29
-    SLBRACKET  shift, and go to state 30
-    SEMICOLON  shift, and go to state 31
-
-    statement        go to state 100
-    if_stat          go to state 34
-    while_stat       go to state 35
-    for_stat         go to state 36
-    write_stat       go to state 37
-    read_stat        go to state 38
-    expression_stat  go to state 39
-    compound_stat    go to state 40
-    call_stat        go to state 41
-    expr             go to state 42
-    bool_expr        go to state 43
-    additive_expr    go to state 44
-    term             go to state 45
-    factor           go to state 46
+    SEMICOLON  shift, and go to state 100
 
 
 state 98
+
+   22 else_stat: ELSE . statement
+
+    IF         shift, and go to state 23
+    WHILE      shift, and go to state 24
+    FOR        shift, and go to state 25
+    WRITE      shift, and go to state 26
+    READ       shift, and go to state 27
+    CALL       shift, and go to state 28
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    BLBRACKET  shift, and go to state 31
+    SLBRACKET  shift, and go to state 32
+    SEMICOLON  shift, and go to state 33
+
+    statement        go to state 101
+    if_stat          go to state 36
+    while_stat       go to state 37
+    for_stat         go to state 38
+    write_stat       go to state 39
+    read_stat        go to state 40
+    expression_stat  go to state 41
+    compound_stat    go to state 42
+    call_stat        go to state 43
+    expr             go to state 44
+    bool_expr        go to state 45
+    additive_expr    go to state 46
+    term             go to state 47
+    factor           go to state 48
+
+
+state 99
 
    21 if_stat: IF SLBRACKET expr SRBRACKET statement else_stat .
 
     $default  reduce using rule 21 (if_stat)
 
 
-state 99
+state 100
 
    25 for_stat: FOR SLBRACKET expr SEMICOLON expr SEMICOLON . expr SRBRACKET statement
 
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    SLBRACKET  shift, and go to state 30
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    SLBRACKET  shift, and go to state 32
 
-    expr           go to state 101
-    bool_expr      go to state 43
-    additive_expr  go to state 44
-    term           go to state 45
-    factor         go to state 46
+    expr           go to state 102
+    bool_expr      go to state 45
+    additive_expr  go to state 46
+    term           go to state 47
+    factor         go to state 48
 
 
-state 100
+state 101
 
    22 else_stat: ELSE statement .
 
     $default  reduce using rule 22 (else_stat)
 
 
-state 101
+state 102
 
    25 for_stat: FOR SLBRACKET expr SEMICOLON expr SEMICOLON expr . SRBRACKET statement
 
-    SRBRACKET  shift, and go to state 102
-
-
-state 102
-
-   25 for_stat: FOR SLBRACKET expr SEMICOLON expr SEMICOLON expr SRBRACKET . statement
-
-    IF         shift, and go to state 21
-    WHILE      shift, and go to state 22
-    FOR        shift, and go to state 23
-    WRITE      shift, and go to state 24
-    READ       shift, and go to state 25
-    CALL       shift, and go to state 26
-    NUM        shift, and go to state 27
-    ID         shift, and go to state 28
-    BLBRACKET  shift, and go to state 29
-    SLBRACKET  shift, and go to state 30
-    SEMICOLON  shift, and go to state 31
-
-    statement        go to state 103
-    if_stat          go to state 34
-    while_stat       go to state 35
-    for_stat         go to state 36
-    write_stat       go to state 37
-    read_stat        go to state 38
-    expression_stat  go to state 39
-    compound_stat    go to state 40
-    call_stat        go to state 41
-    expr             go to state 42
-    bool_expr        go to state 43
-    additive_expr    go to state 44
-    term             go to state 45
-    factor           go to state 46
+    SRBRACKET  shift, and go to state 103
 
 
 state 103
+
+   25 for_stat: FOR SLBRACKET expr SEMICOLON expr SEMICOLON expr SRBRACKET . statement
+
+    IF         shift, and go to state 23
+    WHILE      shift, and go to state 24
+    FOR        shift, and go to state 25
+    WRITE      shift, and go to state 26
+    READ       shift, and go to state 27
+    CALL       shift, and go to state 28
+    NUM        shift, and go to state 29
+    ID         shift, and go to state 30
+    BLBRACKET  shift, and go to state 31
+    SLBRACKET  shift, and go to state 32
+    SEMICOLON  shift, and go to state 33
+
+    statement        go to state 104
+    if_stat          go to state 36
+    while_stat       go to state 37
+    for_stat         go to state 38
+    write_stat       go to state 39
+    read_stat        go to state 40
+    expression_stat  go to state 41
+    compound_stat    go to state 42
+    call_stat        go to state 43
+    expr             go to state 44
+    bool_expr        go to state 45
+    additive_expr    go to state 46
+    term             go to state 47
+    factor           go to state 48
+
+
+state 104
 
    25 for_stat: FOR SLBRACKET expr SEMICOLON expr SEMICOLON expr SRBRACKET statement .
 
