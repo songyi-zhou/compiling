@@ -893,7 +893,7 @@ YY_RULE_SETUP
 case 33:
 YY_RULE_SETUP
 #line 95 "3-1.l"
-{  fprintf(yyout,"line:%10d\t%10s,%10s\n", yylineno,"error",yytext);  }
+
 	YY_BREAK
 case 34:
 YY_RULE_SETUP

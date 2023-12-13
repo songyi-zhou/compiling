@@ -79,9 +79,36 @@ extern int yylineno;
 int yylex(void);
 void yyerror(char *);
 
+typedef struct Node {
+    char* value;
+    struct Node* left;
+    struct Node* right;
+} Node;
+
+Node* create_node(char* value, Node* left, Node* right) {
+    Node* node = (Node*) malloc(sizeof(Node));
+    node->value = value;
+    node->left = left;
+    node->right = right;
+    return node;
+}
+
+void print_ast(Node* node, int depth) {
+    if (node == NULL) {
+        return;
+    }
+    for (int i = 0; i < depth; i++) {
+        printf("  ");
+    }
+    printf("%s\n", node->value);
+    print_ast(node->left, depth + 1);
+    print_ast(node->right, depth + 1);
+}
+
+
 
 /* Line 189 of yacc.c  */
-#line 85 "y.tab.c"
+#line 112 "y.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -166,7 +193,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 13 "3-1.y"
+#line 40 "3-1.y"
 
     int integer;
     float floating_point;
@@ -175,7 +202,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 179 "y.tab.c"
+#line 206 "y.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -187,7 +214,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 191 "y.tab.c"
+#line 218 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -490,11 +517,11 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    23,    23,    30,    32,    35,    39,    43,    51,    52,
-      56,    64,    66,    69,    70,    71,    72,    73,    74,    75,
-      76,    76,    81,    85,    86,    90,    94,    98,   102,   106,
-     107,   112,   116,   126,   127,   135,   139,   141,   144,   148,
-     149,   150,   154,   158,   159,   161,   164,   166,   167
+       0,    50,    50,    57,    59,    62,    66,    70,    78,    79,
+      83,    91,    93,    96,    97,    98,    99,   100,   101,   102,
+     103,   103,   108,   112,   113,   117,   121,   125,   129,   133,
+     134,   139,   143,   153,   154,   162,   166,   168,   171,   175,
+     176,   177,   181,   185,   186,   188,   191,   193,   194
 };
 #endif
 
@@ -1458,336 +1485,336 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 23 "3-1.y"
-    {printf("line:%d\tprogram done\n",yylineno);lineno=yylineno;printf("RIGHT\n");}
+#line 50 "3-1.y"
+    {printf("line:%d\tprogram done\n",yylineno);lineno=yylineno;}
     break;
 
   case 3:
 
 /* Line 1455 of yacc.c  */
-#line 30 "3-1.y"
+#line 57 "3-1.y"
     {printf("line:%d\tfunction declaration list done\n",yylineno);lineno=yylineno;}
     break;
 
   case 4:
 
 /* Line 1455 of yacc.c  */
-#line 32 "3-1.y"
+#line 59 "3-1.y"
     {printf("line:%d\tfunction declaration list empty done\n",yylineno);lineno=yylineno;}
     break;
 
   case 5:
 
 /* Line 1455 of yacc.c  */
-#line 35 "3-1.y"
+#line 62 "3-1.y"
     {printf("line:%d\tfunction declaration done\n",yylineno);lineno=yylineno;lineno=yylineno;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 39 "3-1.y"
+#line 66 "3-1.y"
     {printf("line:%d\tmain decalrtion done\n",yylineno);lineno=yylineno;}
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 43 "3-1.y"
+#line 70 "3-1.y"
     {printf("line:%d\tfunction body done\n",yylineno);lineno=yylineno;}
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 51 "3-1.y"
+#line 78 "3-1.y"
     {printf("line:%d\tdeclaration list empty done\n",yylineno);lineno=yylineno;}
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 52 "3-1.y"
+#line 79 "3-1.y"
     {printf("line:%d\tdeclaration list done\n",yylineno);lineno=yylineno;}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 56 "3-1.y"
+#line 83 "3-1.y"
     {printf("line:%d\tdeclaration stat done\n",yylineno);lineno=yylineno;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 64 "3-1.y"
+#line 91 "3-1.y"
     {printf("line:%d\tstatement list done\n",yylineno);lineno=yylineno;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 66 "3-1.y"
+#line 93 "3-1.y"
     {printf("line:%d\tstatement list empty done\n",yylineno);lineno=yylineno;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 69 "3-1.y"
+#line 96 "3-1.y"
     {printf("line:%d\tstatement if done\n",yylineno);lineno=yylineno;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 70 "3-1.y"
+#line 97 "3-1.y"
     {printf("line:%d\tstatement while done\n",yylineno);lineno=yylineno;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 71 "3-1.y"
+#line 98 "3-1.y"
     {printf("line:%d\tstatement for done\n",yylineno);lineno=yylineno;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 72 "3-1.y"
+#line 99 "3-1.y"
     {printf("line:%d\tstatement read done\n",yylineno);lineno=yylineno;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 73 "3-1.y"
+#line 100 "3-1.y"
     {printf("line:%d\n",yylineno);lineno=yylineno;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 74 "3-1.y"
+#line 101 "3-1.y"
     {printf("line:%d\tstatement compound done\n",yylineno);lineno=yylineno;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 75 "3-1.y"
+#line 102 "3-1.y"
     {printf("line:%d\tstatement expression done\n",yylineno);lineno=yylineno;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 76 "3-1.y"
+#line 103 "3-1.y"
     {printf("line:%d\n",yylineno);lineno=yylineno;}
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 78 "3-1.y"
+#line 105 "3-1.y"
     {printf("line:%d\n",yylineno);lineno=yylineno;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 81 "3-1.y"
+#line 108 "3-1.y"
     {printf("line:%d\tif done\n",yylineno);lineno=yylineno;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 85 "3-1.y"
+#line 112 "3-1.y"
     {printf("line:%d\tesle done\n",yylineno);lineno=yylineno;}
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 86 "3-1.y"
+#line 113 "3-1.y"
     {printf("line:%d\telse empty done\n",yylineno);lineno=yylineno;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 90 "3-1.y"
+#line 117 "3-1.y"
     {printf("line:%d\twhile done\n",yylineno);lineno=yylineno;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 94 "3-1.y"
+#line 121 "3-1.y"
     {printf("line:%d\tfor done\n",yylineno);lineno=yylineno;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 98 "3-1.y"
+#line 125 "3-1.y"
     {printf("line:%d\twrite done\n",yylineno);lineno=yylineno;}
     break;
 
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 102 "3-1.y"
+#line 129 "3-1.y"
     {printf("line:%d\n",yylineno);lineno=yylineno;}
     break;
 
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 106 "3-1.y"
+#line 133 "3-1.y"
     {printf("line:%d\texpression done\n",yylineno);lineno=yylineno;}
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 108 "3-1.y"
+#line 135 "3-1.y"
     {printf("line:%d\texpression empty done\n",yylineno);lineno=yylineno;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 112 "3-1.y"
+#line 139 "3-1.y"
     {printf("line:%d\tcompound done\n",yylineno);lineno=yylineno;}
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 116 "3-1.y"
+#line 143 "3-1.y"
     {printf("line:%d\n",yylineno);lineno=yylineno;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 126 "3-1.y"
+#line 153 "3-1.y"
     {printf("line:%d\tEQL expr done\n",yylineno);lineno=yylineno;}
     break;
 
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 127 "3-1.y"
+#line 154 "3-1.y"
     {printf("line:%d\texpr done\n",yylineno);lineno=yylineno;}
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 135 "3-1.y"
+#line 162 "3-1.y"
     {printf("line:%d\tbool expr done\n",yylineno);lineno=yylineno;}
     break;
 
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 139 "3-1.y"
+#line 166 "3-1.y"
     {printf("line:%d\tbool expr rest done\n",yylineno);lineno=yylineno;}
     break;
 
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 141 "3-1.y"
+#line 168 "3-1.y"
     {printf("line:%d\tbool expr rest empty done\n",yylineno);lineno=yylineno;}
     break;
 
   case 38:
 
 /* Line 1455 of yacc.c  */
-#line 144 "3-1.y"
+#line 171 "3-1.y"
     {printf("line:%d\tadditive expr done\n",yylineno);lineno=yylineno;}
     break;
 
   case 39:
 
 /* Line 1455 of yacc.c  */
-#line 148 "3-1.y"
+#line 175 "3-1.y"
     {printf("line:%d\tadditive expr rest add done\n",yylineno);lineno=yylineno;}
     break;
 
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 149 "3-1.y"
+#line 176 "3-1.y"
     {printf("line:%d\tadditive expr rest min done\n",yylineno);lineno=yylineno;}
     break;
 
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 150 "3-1.y"
+#line 177 "3-1.y"
     {printf("line:%d\tadditive expr rest empty done\n",yylineno);lineno=yylineno;}
     break;
 
   case 42:
 
 /* Line 1455 of yacc.c  */
-#line 154 "3-1.y"
+#line 181 "3-1.y"
     {printf("line:%d\tterm done\n",yylineno);lineno=yylineno;}
     break;
 
   case 43:
 
 /* Line 1455 of yacc.c  */
-#line 158 "3-1.y"
+#line 185 "3-1.y"
     {printf("line:%d\tterm rest mul done\n",yylineno);lineno=yylineno;}
     break;
 
   case 44:
 
 /* Line 1455 of yacc.c  */
-#line 159 "3-1.y"
+#line 186 "3-1.y"
     {printf("line:%d\tterm rest div done\n",yylineno);lineno=yylineno;}
     break;
 
   case 45:
 
 /* Line 1455 of yacc.c  */
-#line 161 "3-1.y"
+#line 188 "3-1.y"
     {printf("line:%d\t term rest qmpty done\n",yylineno);lineno=yylineno;}
     break;
 
   case 46:
 
 /* Line 1455 of yacc.c  */
-#line 164 "3-1.y"
+#line 191 "3-1.y"
     {printf("line:%d\tfactor done\n",yylineno);lineno=yylineno;}
     break;
 
   case 47:
 
 /* Line 1455 of yacc.c  */
-#line 166 "3-1.y"
+#line 193 "3-1.y"
     {printf("line:%d\tfactor id done\n",yylineno);lineno=yylineno;}
     break;
 
   case 48:
 
 /* Line 1455 of yacc.c  */
-#line 167 "3-1.y"
+#line 194 "3-1.y"
     {printf("line:%d\tfactor num done\n",yylineno);lineno=yylineno;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1791 "y.tab.c"
+#line 1818 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1999,7 +2026,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 170 "3-1.y"
+#line 197 "3-1.y"
 
 // int yyerror(char *s) {
 //     fprintf(stderr, "Error at line %d: %s\n", yylineno-1, s);

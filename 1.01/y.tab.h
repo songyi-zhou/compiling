@@ -97,7 +97,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 13 "3-1.y"
+#line 40 "3-1.y"
 
     int integer;
     float floating_point;

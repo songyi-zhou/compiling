@@ -7,6 +7,33 @@ extern int lineno=1;
 extern int yylineno;
 int yylex(void);
 void yyerror(char *);
+
+typedef struct program_node {
+    char* value;
+    struct Node* left;
+    struct Node* right;
+} Node;
+
+// Node* create_node(char* value, Node* left, Node* right) {
+//     Node* node = (Node*) malloc(sizeof(Node));
+//     node->value = value;
+//     node->left = left;
+//     node->right = right;
+//     return node;
+// }
+
+// void print_ast(Node* node, int depth) {
+//     if (node == NULL) {
+//         return;
+//     }
+//     for (int i = 0; i < depth; i++) {
+//         printf("  ");
+//     }
+//     printf("%s\n", node->value);
+//     print_ast(node->left, depth + 1);
+//     print_ast(node->right, depth + 1);
+// }
+
 %}
 
 
@@ -20,7 +47,7 @@ void yyerror(char *);
 
 %%
    
-    program : fun_de_list main_declaration {$$printf("line:%d\tprogram done\n",yylineno);lineno=yylineno;printf("RIGHT\n");}
+    program : fun_de_list main_declaration {printf("line:%d\tprogram done\n",yylineno);lineno=yylineno;}// print_ast($1,0)}
     // |error '\n' { yyerror("Syntax error"); }
             ;
 

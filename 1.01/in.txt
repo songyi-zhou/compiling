@@ -1,6 +1,6 @@
 function aa(){}
 main()
-{iNt a;
+{int a;
 int b;
 a=1;
 if(a<0){
