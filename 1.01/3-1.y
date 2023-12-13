@@ -23,7 +23,7 @@ int yydebug=1;
 %token <type_tnode> ADD MIN MUL DIV EQL COMPARE
 %token <type_tnode> BLBRACKET BRBRACKET SLBRACKET SRBRACKET SEMICOLON
 
-%type <type_tnode> program ExtDefList fun_de_list fun_de main_declaration function_body declaration_list declaration_stat statement_list statement 
+%type <type_tnode> program ExtDefList function_def function_body declaration_list declaration_stat statement_list statement 
 %type <type_tnode> if_stat else_stat while_stat for_stat write_stat read_stat compound_stat expression_stat call_stat expr
 %type <type_tnode> bool_expr bool_expr_rest additive_expr additive_expr_rest term term_rest factor
 
@@ -40,18 +40,23 @@ int yydebug=1;
 %%
     program : ExtDefList {$$=newAst("program",1,$1);nodeList[nodeNum]=$$;nodeNum++;}
 
-    ExtDefList :  fun_de_list main_declaration {$$=newAst("ExtDefList",2,$1,$2);nodeList[nodeNum]=$$;nodeNum++;}
+    ExtDefList : function_def {$$=newAst("ExtDefList",1,$1);nodeList[nodeNum]=$$;nodeNum++;}
             ;
-
-    fun_de_list : fun_de fun_de_list {$$=newAst("function declaration list",2,$1,$2);nodeList[nodeNum]=$$;nodeNum++;}
-                |/*empty*/ {$$=newAst("function declaration list",0,-1);nodeList[nodeNum]=$$;nodeNum++;}
-                ;
     
-    fun_de: FUNKTION ID SLBRACKET SRBRACKET function_body {$$=newAst("function declaration",5,$1,$2,$3,$4,$5);nodeList[nodeNum]=$$;nodeNum++;} 
-            ;
+    function_def : INT FUNKTION SLBRACKET SRBRACKET function_body function_def {$$=newAst("function declaration",6,$1,$2,$3,$4,$5,$6);nodeList[nodeNum]=$$;nodeNum++;}
+                |INT MAIN SLBRACKET SRBRACKET function_body function_def {$$=newAst("function declaration",6,$1,$2,$3,$4,$5,$6);nodeList[nodeNum]=$$;nodeNum++;}
+                |/*empty*/ {$$=newAst("function declaration",0,-1);nodeList[nodeNum]=$$;nodeNum++;}
+                ;
 
-	main_declaration:INT MAIN SLBRACKET SRBRACKET function_body {$$=newAst("main declaration",5,$1,$2,$3,$4,$5);nodeList[nodeNum]=$$;nodeNum++;}
-                    ;
+    // fun_de_list : fun_de fun_de_list {$$=newAst("function declaration list",2,$1,$2);nodeList[nodeNum]=$$;nodeNum++;}
+    //             |/*empty*/ {$$=newAst("function declaration list",0,-1);nodeList[nodeNum]=$$;nodeNum++;}
+    //             ;
+    
+    // fun_de: FUNKTION ID SLBRACKET SRBRACKET function_body {$$=newAst("function declaration",5,$1,$2,$3,$4,$5);nodeList[nodeNum]=$$;nodeNum++;} 
+    //         ;
+
+	// main_declaration:INT MAIN SLBRACKET SRBRACKET function_body {$$=newAst("main declaration",5,$1,$2,$3,$4,$5);nodeList[nodeNum]=$$;nodeNum++;}
+    //                 ;
                     
 
 	function_body:BLBRACKET declaration_list statement_list BRBRACKET {$$=newAst("function_body",4,$1,$2,$3,$4);nodeList[nodeNum]=$$;nodeNum++;}

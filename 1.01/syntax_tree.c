@@ -56,14 +56,6 @@ Ast newAst(char *name, int num, ...)
             // father->id_type = (char*)malloc(sizeof(char)*40);
             // strcpy(father->id_type,yytext);
         }
-        else if (!strcmp(name, "NUM"))
-        {
-            father->intval = atoi(yytext);
-        }
-        else
-        {
-            father->fltval = atof(yytext);
-        }
     }
     return father;
 }
@@ -86,23 +78,10 @@ void Preorder(Ast ast, int level)
             // 打印节点类型
             printf("%s", ast->name);
             // 根据不同类型打印节点数据
-            if ((!strcmp(ast->name, "ID")) || (!strcmp(ast->name, "TYPE")))
-            {
-                printf(": %s", ast->id_type);
-            }
-            else if (!strcmp(ast->name, "INT"))
-            {
-                printf(": %d", ast->intval);
-            }
-            else if (!strcmp(ast->name, "FLOAT"))
-            {
-                printf(": %f", ast->fltval);
-            }
-            else
-            {
+            
                 // 非叶节点打印行号
-                printf("(%d)", ast->line);
-            }
+            printf("(%d)", ast->line);
+            
         }
         printf("\n");
         // printf(" fchild ");

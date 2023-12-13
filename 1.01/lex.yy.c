@@ -498,7 +498,7 @@ char *yytext;
 #include <stdlib.h>
 #include <stdio.h>
 #include "syntax_tree.h"
-#include "y.tab.h"
+#include "3-1.tab.h"
 /*十进制*/
 /*十六进制*/
 /*八进制*/

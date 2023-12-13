@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "syntax_tree.h"
-#include "y.tab.h"
+#include "3-1.tab.h"
 %}
 %option yylineno
 
