@@ -1,6 +1,9 @@
 function aa(){}
 main()
-{int a;
+{iNt a;
 int b;
 a=1;
+if(a<0){
+a=10;
+}
 }

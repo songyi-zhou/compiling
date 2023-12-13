@@ -877,31 +877,30 @@ case 30:
 YY_RULE_SETUP
 #line 89 "3-1.l"
 { 
-    fprintf(yyout,"line:%10d\t%10s,%10s\n", yylineno-1,"error",yytext);
-
+    fprintf(yyout,"line:%10d\t%10s,%10s\n", yylineno,"error",yytext);
     }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 94 "3-1.l"
+#line 93 "3-1.l"
 /* ignore end of line */{yylineno;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 95 "3-1.l"
+#line 94 "3-1.l"
 /* ignore whitespace */;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 96 "3-1.l"
-
+#line 95 "3-1.l"
+{  fprintf(yyout,"line:%10d\t%10s,%10s\n", yylineno,"error",yytext);  }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 97 "3-1.l"
+#line 96 "3-1.l"
 ECHO;
 	YY_BREAK
-#line 905 "lex.yy.c"
+#line 904 "lex.yy.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -1785,4 +1784,4 @@ int main()
 	return 0;
 	}
 #endif
-#line 97 "3-1.l"
+#line 96 "3-1.l"

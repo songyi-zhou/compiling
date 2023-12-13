@@ -87,8 +87,7 @@ read [rR][eE][aA][dD]
         }
 
 {iderror} { 
-    fprintf(yyout,"line:%10d\t%10s,%10s\n", yylineno-1,"error",yytext);
-
+    fprintf(yyout,"line:%10d\t%10s,%10s\n", yylineno,"error",yytext);
     }
 
 "\n" /* ignore end of line */{yylineno;}
