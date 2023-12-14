@@ -494,10 +494,9 @@ char *yytext;
 /*
 	按照C-Tokens文件中要求定义
     对终结符建立叶子结点，返回Token
-	19-10-26
 */
 /*第一部分 头文件和变量*/
-#line 10 "syntax_tree.l"
+#line 7 "syntax_tree.l"
 	#include <stdlib.h>
 	#include <stdio.h>
     #include "syntax_tree.h"
@@ -522,7 +521,7 @@ char *yytext;
 /*换行*/
 /*未定义字符*/
 /*第三部分 操作 action 这里面的注释必须顶格一个空格*/
-#line 526 "lex.yy.c"
+#line 525 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -673,10 +672,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 80 "syntax_tree.l"
+#line 77 "syntax_tree.l"
 
  /*跳过空白和注释*/
-#line 680 "lex.yy.c"
+#line 679 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -769,173 +768,191 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 82 "syntax_tree.l"
+#line 79 "syntax_tree.l"
 {}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 83 "syntax_tree.l"
+#line 80 "syntax_tree.l"
 {}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 84 "syntax_tree.l"
+#line 81 "syntax_tree.l"
 {}
 	YY_BREAK
 /*关键字*/
 case 4:
 YY_RULE_SETUP
-#line 86 "syntax_tree.l"
+#line 83 "syntax_tree.l"
 {yylval.type_tnode=newAst("TYPE",0,yylineno);return TYPE;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 87 "syntax_tree.l"
-{yylval.type_tnode=newAst("STRUCT",0,yylineno);return STRUCT;}
+#line 84 "syntax_tree.l"
+{
+	yylval.type_tnode=newAst("STRUCT",0,yylineno); 
+	// 结构体数加一
+	strucNum++; 
+	// 开始扫描结构体定义内容
+	inStruc=1; 
+	return STRUCT;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 88 "syntax_tree.l"
+#line 91 "syntax_tree.l"
 {yylval.type_tnode=newAst("RETURN",0,yylineno); return RETURN;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 89 "syntax_tree.l"
+#line 92 "syntax_tree.l"
 {yylval.type_tnode=newAst("IF",0,yylineno);return IF;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 90 "syntax_tree.l"
+#line 93 "syntax_tree.l"
 {yylval.type_tnode=newAst("ELSE",0,yylineno); return ELSE;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 91 "syntax_tree.l"
+#line 94 "syntax_tree.l"
 {yylval.type_tnode=newAst("WHILE",0,yylineno); return WHILE;}
 	YY_BREAK
 /*数字类型错误*/
 case 10:
 YY_RULE_SETUP
-#line 93 "syntax_tree.l"
+#line 96 "syntax_tree.l"
 {printf("INT_HEX_ERROR at line %d: charachters \"%s\"\n",yylineno,yytext);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 94 "syntax_tree.l"
+#line 97 "syntax_tree.l"
 {printf("INT_OCT_ERROR at line %d: charachters \"%s\"\n",yylineno,yytext);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 95 "syntax_tree.l"
+#line 98 "syntax_tree.l"
 {printf("INT_BIN_ERROR at line %d: charachters \"%s\"\n",yylineno,yytext);}
 	YY_BREAK
 /*数字类型表示*/
 case 13:
 YY_RULE_SETUP
-#line 97 "syntax_tree.l"
+#line 100 "syntax_tree.l"
 {yylval.type_tnode=newAst("INT",0,yylineno); return INT;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 98 "syntax_tree.l"
+#line 101 "syntax_tree.l"
 {yylval.type_tnode=newAst("FLOAT",0,yylineno); return FLOAT;}
 	YY_BREAK
 /*符号*/
 case 15:
 YY_RULE_SETUP
-#line 100 "syntax_tree.l"
+#line 103 "syntax_tree.l"
 {yylval.type_tnode=newAst("SEMI",0,yylineno); return SEMI;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 101 "syntax_tree.l"
+#line 104 "syntax_tree.l"
 {yylval.type_tnode=newAst("COMMA",0,yylineno); return COMMA;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 102 "syntax_tree.l"
+#line 105 "syntax_tree.l"
 {yylval.type_tnode=newAst("ASSIGNOP",0,yylineno); return ASSIGNOP;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 103 "syntax_tree.l"
+#line 106 "syntax_tree.l"
 {yylval.type_tnode=newAst("PLUS",0,yylineno); return PLUS;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 104 "syntax_tree.l"
+#line 107 "syntax_tree.l"
 {yylval.type_tnode=newAst("MINUS",0,yylineno); return MINUS;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 105 "syntax_tree.l"
+#line 108 "syntax_tree.l"
 {yylval.type_tnode=newAst("STAR",0,yylineno); return STAR;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 106 "syntax_tree.l"
+#line 109 "syntax_tree.l"
 {yylval.type_tnode=newAst("DIV",0,yylineno); return DIV;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 107 "syntax_tree.l"
+#line 110 "syntax_tree.l"
 {yylval.type_tnode=newAst("AND",0,yylineno); return AND;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 108 "syntax_tree.l"
+#line 111 "syntax_tree.l"
 {yylval.type_tnode=newAst("DOT",0,yylineno); return DOT;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 109 "syntax_tree.l"
+#line 112 "syntax_tree.l"
 {yylval.type_tnode=newAst("NOT",0,yylineno); return NOT;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 110 "syntax_tree.l"
+#line 113 "syntax_tree.l"
 {yylval.type_tnode=newAst("LP",0,yylineno); return LP;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 111 "syntax_tree.l"
+#line 114 "syntax_tree.l"
 {yylval.type_tnode=newAst("RP",0,yylineno); return RP;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 112 "syntax_tree.l"
+#line 115 "syntax_tree.l"
 {yylval.type_tnode=newAst("LB",0,yylineno); return LB;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 113 "syntax_tree.l"
+#line 116 "syntax_tree.l"
 {yylval.type_tnode=newAst("RB",0,yylineno); return RB;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 114 "syntax_tree.l"
-{yylval.type_tnode=newAst("LC",0,yylineno); return LC;}
+#line 117 "syntax_tree.l"
+{
+	yylval.type_tnode=newAst("LC",0,yylineno); 
+	if(inStruc){
+		// 结构体定义内部存在LC左花括号
+		LCnum++;
+	}
+	return LC;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 115 "syntax_tree.l"
-{yylval.type_tnode=newAst("RC",0,yylineno); return RC;}
+#line 124 "syntax_tree.l"
+{
+	yylval.type_tnode=newAst("RC",0,yylineno); 
+	if(inStruc){
+		// 结构体定义内部存在RC右花括号
+		LCnum--;
+	}
+	return RC;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 116 "syntax_tree.l"
+#line 131 "syntax_tree.l"
 {yylval.type_tnode=newAst("RELOP",0,yylineno); return RELOP;}
 	YY_BREAK
 /*标识符*/
 case 32:
 YY_RULE_SETUP
-#line 118 "syntax_tree.l"
+#line 133 "syntax_tree.l"
 {yylval.type_tnode=newAst("ID",0,yylineno); return ID;}
 	YY_BREAK
 /*错误*/
 case 33:
 YY_RULE_SETUP
-#line 120 "syntax_tree.l"
+#line 135 "syntax_tree.l"
 {
 	hasFault=1;
 	printf("Error type A at line %d: Mystirious charachter '%s'\n",yylineno,yytext);
@@ -943,10 +960,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 124 "syntax_tree.l"
+#line 139 "syntax_tree.l"
 ECHO;
 	YY_BREAK
-#line 950 "lex.yy.c"
+#line 967 "lex.yy.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -1830,7 +1847,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 124 "syntax_tree.l"
+#line 139 "syntax_tree.l"
 
 
 /*第四部分 函数 function*/
