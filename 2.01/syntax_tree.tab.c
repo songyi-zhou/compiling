@@ -474,12 +474,12 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    42,    42,    44,    45,    47,    54,    55,    61,    62,
-      65,    66,    68,    77,    79,    80,    82,    85,    86,    88,
-      96,   105,   106,   108,   121,   123,   124,   126,   127,   128,
-     132,   133,   134,   137,   138,   140,   151,   152,   154,   155,
-     158,   171,   172,   173,   174,   180,   186,   192,   198,   199,
-     200,   201,   214,   224,   225,   226,   234,   235,   237,   238
+       0,    42,    42,    44,    45,    47,    48,    49,    51,    52,
+      55,    56,    58,    59,    61,    62,    64,    67,    68,    70,
+      71,    73,    74,    76,    80,    82,    83,    85,    86,    87,
+      88,    89,    90,    93,    94,    96,    98,    99,   101,   102,
+     105,   106,   107,   108,   109,   110,   111,   112,   113,   114,
+     115,   116,   117,   118,   119,   120,   121,   122,   124,   125
 };
 #endif
 
@@ -1482,525 +1482,412 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 42 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Program",1,(yyvsp[(1) - (1)].type_tnode)); ;}
+    {(yyval.type_tnode)=newAst("Program",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 3:
 
 /* Line 1455 of yacc.c  */
 #line 44 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("ExtDefList",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode)); ;}
+    {(yyval.type_tnode)=newAst("ExtDefList",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 4:
 
 /* Line 1455 of yacc.c  */
 #line 45 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("ExtDefList",0,-1); ;}
+    {(yyval.type_tnode)=newAst("ExtDefList",0,-1);nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 5:
 
 /* Line 1455 of yacc.c  */
 #line 47 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("ExtDef",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));
-		// 错误类型7:变量出现重复定义
-		if(findvar((yyvsp[(2) - (3)].type_tnode))) 
-			printf("Error type 7 at Line %d:Redefined Variable '%s'\n",yylineno,(yyvsp[(2) - (3)].type_tnode)->content);
-        else newvar(2,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode));
-	;}
+    {(yyval.type_tnode)=newAst("ExtDef",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 54 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("ExtDef",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode)); ;}
+#line 48 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("ExtDef",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 55 "syntax_tree.y"
-    {
-			(yyval.type_tnode)=newAst("ExtDef",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); 
-			// 设置函数声明的返回值类型并检查返回类型错误
-			newfunc(1,(yyvsp[(1) - (3)].type_tnode));
-		;}
+#line 49 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("ExtDef",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 61 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("ExtDecList",1,(yyvsp[(1) - (1)].type_tnode)); ;}
+#line 51 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("ExtDecList",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 62 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("ExtDecList",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); ;}
+#line 52 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("ExtDecList",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 65 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Specifire",1,(yyvsp[(1) - (1)].type_tnode));;}
+#line 55 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Specifire",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 66 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Specifire",1,(yyvsp[(1) - (1)].type_tnode)); ;}
+#line 56 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Specifire",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 68 "syntax_tree.y"
-    {
-		// 结构体定义完成，当前在结构体定义外部
-		inStruc = 0;
-		(yyval.type_tnode)=newAst("StructSpecifire",5,(yyvsp[(1) - (5)].type_tnode),(yyvsp[(2) - (5)].type_tnode),(yyvsp[(3) - (5)].type_tnode),(yyvsp[(4) - (5)].type_tnode),(yyvsp[(5) - (5)].type_tnode)); 
-		// 错误类型11:结构体的名字与前面定义过的结构体或变量的名字重复
-		if(findstruc((yyvsp[(2) - (5)].type_tnode)))	
-			printf("Error type 11 at Line %d:Duplicated name '%s'\n",yylineno,(yyvsp[(2) - (5)].type_tnode)->content);
-        else newstruc(1,(yyvsp[(2) - (5)].type_tnode));
-	;}
+#line 58 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("StructSpecifire",5,(yyvsp[(1) - (5)].type_tnode),(yyvsp[(2) - (5)].type_tnode),(yyvsp[(3) - (5)].type_tnode),(yyvsp[(4) - (5)].type_tnode),(yyvsp[(5) - (5)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 77 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("StructSpecifire",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode)); ;}
+#line 59 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("StructSpecifire",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 79 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("OptTag",1,(yyvsp[(1) - (1)].type_tnode)); ;}
+#line 61 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("OptTag",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 80 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("OptTag",0,-1); ;}
+#line 62 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("OptTag",0,-1);nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 82 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Tag",1,(yyvsp[(1) - (1)].type_tnode)); ;}
+#line 64 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Tag",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 85 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("VarDec",1,(yyvsp[(1) - (1)].type_tnode)); (yyval.type_tnode)->tag=1;;}
+#line 67 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("VarDec",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 86 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("VarDec",4,(yyvsp[(1) - (4)].type_tnode),(yyvsp[(2) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode),(yyvsp[(4) - (4)].type_tnode)); (yyval.type_tnode)->content=(yyvsp[(1) - (4)].type_tnode)->content;(yyval.type_tnode)->tag=4;;}
+#line 68 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("VarDec",4,(yyvsp[(1) - (4)].type_tnode),(yyvsp[(2) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode),(yyvsp[(4) - (4)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 88 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("FunDec",4,(yyvsp[(1) - (4)].type_tnode),(yyvsp[(2) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode),(yyvsp[(4) - (4)].type_tnode)); (yyval.type_tnode)->content=(yyvsp[(1) - (4)].type_tnode)->content;
-		// 错误类型8:函数出现重复定义（即同样的函数名出现了不止一次定义）
-		if(findfunc((yyvsp[(1) - (4)].type_tnode))) 
-			printf("Error type 8 at Line %d:Redefined Function '%s'\n",yylineno,(yyvsp[(1) - (4)].type_tnode)->content);
-		// 设置函数名称以及参数列表
-        else newfunc(2,(yyvsp[(1) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode));
-	;}
+#line 70 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("FunDec",4,(yyvsp[(1) - (4)].type_tnode),(yyvsp[(2) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode),(yyvsp[(4) - (4)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 96 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("FunDec",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); (yyval.type_tnode)->content=(yyvsp[(1) - (3)].type_tnode)->content;
-		// 错误类型8:函数出现重复定义（即同样的函数名出现了不止一次定义）
-		if(findfunc((yyvsp[(1) - (3)].type_tnode))) 
-			printf("Error type 8 at Line %d:Redefined Function '%s'\n",yylineno,(yyvsp[(1) - (3)].type_tnode)->content);
-		// 设置函数名称以及参数列表
-        else newfunc(2,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));
-	;}
+#line 71 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("FunDec",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 105 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("VarList",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); ;}
+#line 73 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("VarList",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 106 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("VarList",1,(yyvsp[(1) - (1)].type_tnode)); ;}
+#line 74 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("VarList",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 108 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("ParamDec",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode)); 
-		// 错误类型7:变量出现重复定义
-		if(findvar((yyvsp[(2) - (2)].type_tnode))||findarray((yyvsp[(2) - (2)].type_tnode)))  
-			printf("Error type 7 at Line %d:Redefined Variable '%s'\n",yylineno,(yyvsp[(2) - (2)].type_tnode)->content);
-        else if((yyvsp[(2) - (2)].type_tnode)->tag==4) 
-			newarray(2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode));
-        else 
-			newvar(2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode));
-	;}
+#line 76 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("ParamDec",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 121 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Compst",4,(yyvsp[(1) - (4)].type_tnode),(yyvsp[(2) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode),(yyvsp[(4) - (4)].type_tnode)); ;}
+#line 80 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Compst",4,(yyvsp[(1) - (4)].type_tnode),(yyvsp[(2) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode),(yyvsp[(4) - (4)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 123 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("StmtList",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode)); ;}
+#line 82 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("StmtList",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 124 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("StmtList",0,-1); ;}
+#line 83 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("StmtList",0,-1);nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 126 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Stmt",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode)); ;}
+#line 85 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Stmt",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 127 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Stmt",1,(yyvsp[(1) - (1)].type_tnode)); ;}
+#line 86 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Stmt",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 128 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("Stmt",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); 
-		getrtype((yyvsp[(2) - (3)].type_tnode));
-	;}
+#line 87 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Stmt",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 132 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Stmt",5,(yyvsp[(1) - (5)].type_tnode),(yyvsp[(2) - (5)].type_tnode),(yyvsp[(3) - (5)].type_tnode),(yyvsp[(4) - (5)].type_tnode),(yyvsp[(5) - (5)].type_tnode)); ;}
+#line 88 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Stmt",5,(yyvsp[(1) - (5)].type_tnode),(yyvsp[(2) - (5)].type_tnode),(yyvsp[(3) - (5)].type_tnode),(yyvsp[(4) - (5)].type_tnode),(yyvsp[(5) - (5)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 133 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Stmt",7,(yyvsp[(1) - (7)].type_tnode),(yyvsp[(2) - (7)].type_tnode),(yyvsp[(3) - (7)].type_tnode),(yyvsp[(4) - (7)].type_tnode),(yyvsp[(5) - (7)].type_tnode),(yyvsp[(6) - (7)].type_tnode),(yyvsp[(7) - (7)].type_tnode)); ;}
+#line 89 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Stmt",7,(yyvsp[(1) - (7)].type_tnode),(yyvsp[(2) - (7)].type_tnode),(yyvsp[(3) - (7)].type_tnode),(yyvsp[(4) - (7)].type_tnode),(yyvsp[(5) - (7)].type_tnode),(yyvsp[(6) - (7)].type_tnode),(yyvsp[(7) - (7)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 134 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Stmt",5,(yyvsp[(1) - (5)].type_tnode),(yyvsp[(2) - (5)].type_tnode),(yyvsp[(3) - (5)].type_tnode),(yyvsp[(4) - (5)].type_tnode),(yyvsp[(5) - (5)].type_tnode)); ;}
+#line 90 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Stmt",5,(yyvsp[(1) - (5)].type_tnode),(yyvsp[(2) - (5)].type_tnode),(yyvsp[(3) - (5)].type_tnode),(yyvsp[(4) - (5)].type_tnode),(yyvsp[(5) - (5)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 137 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("DefList",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode)); ;}
+#line 93 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("DefList",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 138 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("DefList",0,-1); ;}
+#line 94 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("DefList",0,-1);nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 140 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("Def",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); 
-		// 错误类型7:变量出现重复定义
-		if(findvar((yyvsp[(2) - (3)].type_tnode))||findarray((yyvsp[(2) - (3)].type_tnode)))  
-			printf("Error type 7 at Line %d:Redefined Variable '%s'\n",yylineno,(yyvsp[(2) - (3)].type_tnode)->content);
-        else if((yyvsp[(2) - (3)].type_tnode)->tag==4) 
-			newarray(2,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode));
-        else 
-			newvar(2,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode));
-	;}
+#line 96 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Def",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 151 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("DecList",1,(yyvsp[(1) - (1)].type_tnode)); ;}
+#line 98 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("DecList",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 152 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("DecList",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); (yyval.type_tnode)->tag=(yyvsp[(3) - (3)].type_tnode)->tag;;}
+#line 99 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("DecList",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 38:
 
 /* Line 1455 of yacc.c  */
-#line 154 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Dec",1,(yyvsp[(1) - (1)].type_tnode)); ;}
+#line 101 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Dec",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 39:
 
 /* Line 1455 of yacc.c  */
-#line 155 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Dec",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); (yyval.type_tnode)->content=(yyvsp[(1) - (3)].type_tnode)->content;;}
+#line 102 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Dec",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 158 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); 
-		// 当有一边变量是未定义时，不进行处理
-		if((yyvsp[(1) - (3)].type_tnode)->type==NULL || (yyvsp[(3) - (3)].type_tnode)->type==NULL){
-			return;
-		}
-		// 错误类型2:赋值号两边的表达式类型不匹配
-		if(strcmp((yyvsp[(1) - (3)].type_tnode)->type,(yyvsp[(3) - (3)].type_tnode)->type))
-			printf("Error type 2 at Line %d:Type mismatched for assignment.\n ",yylineno);
-		// 错误类型3:赋值号左边出现一个只有右值的表达式
-		if(!checkleft((yyvsp[(1) - (3)].type_tnode)))
-			printf("Error type 3 at Line %d:The left-hand side of an assignment must be a variable.\n ",yylineno);
-	;}
+#line 105 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 171 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); ;}
+#line 106 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 42:
 
 /* Line 1455 of yacc.c  */
-#line 172 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); ;}
+#line 107 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 43:
 
 /* Line 1455 of yacc.c  */
-#line 173 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); ;}
+#line 108 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 44:
 
 /* Line 1455 of yacc.c  */
-#line 174 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); 
-		// 错误类型6:操作数类型不匹配或操作数类型与操作符不匹配
-		if(strcmp((yyvsp[(1) - (3)].type_tnode)->type,(yyvsp[(3) - (3)].type_tnode)->type))
-			printf("Error type 6 at Line %d:Type mismatched for operands.\n ",yylineno);
-	;}
+#line 109 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 45:
 
 /* Line 1455 of yacc.c  */
-#line 180 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); 
-		// 错误类型6:操作数类型不匹配或操作数类型与操作符不匹配
-		if(strcmp((yyvsp[(1) - (3)].type_tnode)->type,(yyvsp[(3) - (3)].type_tnode)->type))
-			printf("Error type 6 at Line %d:Type mismatched for operands.\n ",yylineno);
-	;}
+#line 110 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 46:
 
 /* Line 1455 of yacc.c  */
-#line 186 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); 
-		// 错误类型6:操作数类型不匹配或操作数类型与操作符不匹配
-		if(strcmp((yyvsp[(1) - (3)].type_tnode)->type,(yyvsp[(3) - (3)].type_tnode)->type))
-			printf("Error type 6 at Line %d:Type mismatched for operands.\n ",yylineno);
-	;}
+#line 111 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 47:
 
 /* Line 1455 of yacc.c  */
-#line 192 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); 
-		// 错误类型6:操作数类型不匹配或操作数类型与操作符不匹配
-		if(strcmp((yyvsp[(1) - (3)].type_tnode)->type,(yyvsp[(3) - (3)].type_tnode)->type))
-			printf("Error type 6 at Line %d:Type mismatched for operands.\n ",yylineno);
-	;}
+#line 112 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 48:
 
 /* Line 1455 of yacc.c  */
-#line 198 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); ;}
+#line 113 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 49:
 
 /* Line 1455 of yacc.c  */
-#line 199 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Exp",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode)); ;}
+#line 114 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 50:
 
 /* Line 1455 of yacc.c  */
-#line 200 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Exp",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode)); ;}
+#line 115 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",2,(yyvsp[(1) - (2)].type_tnode),(yyvsp[(2) - (2)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 51:
 
 /* Line 1455 of yacc.c  */
-#line 201 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("Exp",4,(yyvsp[(1) - (4)].type_tnode),(yyvsp[(2) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode),(yyvsp[(4) - (4)].type_tnode)); 
-		// 错误类型4:对普通变量使用“(...)”或“()”（函数调用）操作符
-		if(!findfunc((yyvsp[(1) - (4)].type_tnode)) && (findvar((yyvsp[(1) - (4)].type_tnode))||findarray((yyvsp[(1) - (4)].type_tnode))))
-			printf("Error type 4 at Line %d:'%s' is not a function.\n ",yylineno,(yyvsp[(1) - (4)].type_tnode)->content);
-		// 错误类型5:函数在调用时未经定义
-		else if(!findfunc((yyvsp[(1) - (4)].type_tnode)))
-			printf("Error type 5 at Line %d:Undefined function %s\n ",yylineno,(yyvsp[(1) - (4)].type_tnode)->content);
-		// 函数实参和形参类型不一致
-		else if(checkrtype((yyvsp[(1) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode))){
-			printf("Error type 13 at Line %d:Function parameter type error.\n ",yylineno);
-		}else{}
-	;}
+#line 116 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",4,(yyvsp[(1) - (4)].type_tnode),(yyvsp[(2) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode),(yyvsp[(4) - (4)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 52:
 
 /* Line 1455 of yacc.c  */
-#line 214 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); 
-		// 错误类型4:对普通变量使用“(...)”或“()”（函数调用）操作符
-		if(!findfunc((yyvsp[(1) - (3)].type_tnode)) && (findvar((yyvsp[(1) - (3)].type_tnode))||findarray((yyvsp[(1) - (3)].type_tnode))))
-			printf("Error type 4 at Line %d:'%s' is not a function.\n ",yylineno,(yyvsp[(1) - (3)].type_tnode)->content);
-		// 错误类型5:函数在调用时未经定义
-		else if(!findfunc((yyvsp[(1) - (3)].type_tnode)))
-			printf("Error type 5 at Line %d:Undefined function %s\n ",yylineno,(yyvsp[(1) - (3)].type_tnode)->content);
-		else {}
-	;}
+#line 117 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 53:
 
 /* Line 1455 of yacc.c  */
-#line 224 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Exp",4,(yyvsp[(1) - (4)].type_tnode),(yyvsp[(2) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode),(yyvsp[(4) - (4)].type_tnode)); ;}
+#line 118 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",4,(yyvsp[(1) - (4)].type_tnode),(yyvsp[(2) - (4)].type_tnode),(yyvsp[(3) - (4)].type_tnode),(yyvsp[(4) - (4)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 54:
 
 /* Line 1455 of yacc.c  */
-#line 225 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode)); ;}
+#line 119 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 55:
 
 /* Line 1455 of yacc.c  */
-#line 226 "syntax_tree.y"
-    {
-		(yyval.type_tnode)=newAst("Exp",1,(yyvsp[(1) - (1)].type_tnode)); 
-		// 错误类型1:变量在使用时未经定义
-		if(!findvar((yyvsp[(1) - (1)].type_tnode))&&!findarray((yyvsp[(1) - (1)].type_tnode)))
-			printf("Error type 1 at Line %d:undefined variable %s\n",yylineno,(yyvsp[(1) - (1)].type_tnode)->content);
-		else 
-			(yyval.type_tnode)->type=typevar((yyvsp[(1) - (1)].type_tnode));
-	;}
+#line 120 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 56:
 
 /* Line 1455 of yacc.c  */
-#line 234 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Exp",1,(yyvsp[(1) - (1)].type_tnode)); (yyval.type_tnode)->tag=3;(yyval.type_tnode)->type="int";;}
+#line 121 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 57:
 
 /* Line 1455 of yacc.c  */
-#line 235 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Exp",1,(yyvsp[(1) - (1)].type_tnode)); (yyval.type_tnode)->tag=3;(yyval.type_tnode)->type="float";(yyval.type_tnode)->value=(yyvsp[(1) - (1)].type_tnode)->value;;}
+#line 122 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Exp",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 58:
 
 /* Line 1455 of yacc.c  */
-#line 237 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Args",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));;}
+#line 124 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Args",3,(yyvsp[(1) - (3)].type_tnode),(yyvsp[(2) - (3)].type_tnode),(yyvsp[(3) - (3)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
   case 59:
 
 /* Line 1455 of yacc.c  */
-#line 238 "syntax_tree.y"
-    {(yyval.type_tnode)=newAst("Args",1,(yyvsp[(1) - (1)].type_tnode));;}
+#line 125 "syntax_tree.y"
+    {(yyval.type_tnode)=newAst("Args",1,(yyvsp[(1) - (1)].type_tnode));nodeList[nodeNum]=(yyval.type_tnode);nodeNum++;;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 2004 "syntax_tree.tab.c"
+#line 1891 "syntax_tree.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2212,6 +2099,6 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 240 "syntax_tree.y"
+#line 127 "syntax_tree.y"
 
 

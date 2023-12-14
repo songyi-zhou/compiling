@@ -1,7 +1,10 @@
 /*
 	按照C-Tokens文件中要求定义
     对终结符建立叶子结点，返回Token
+	19-10-26
 */
+
+
 /*第一部分 头文件和变量*/
 %{
 	#include <stdlib.h>
@@ -81,13 +84,7 @@ AERROR .
 {EOL} {}
  /*关键字*/
 {TYPE} {yylval.type_tnode=newAst("TYPE",0,yylineno);return TYPE;}
-{STRUCT} {
-	yylval.type_tnode=newAst("STRUCT",0,yylineno); 
-	// 结构体数加一
-	strucNum++; 
-	// 开始扫描结构体定义内容
-	inStruc=1; 
-	return STRUCT;}
+{STRUCT} {yylval.type_tnode=newAst("STRUCT",0,yylineno);return STRUCT;}
 {RETURN} {yylval.type_tnode=newAst("RETURN",0,yylineno); return RETURN;}
 {IF} {yylval.type_tnode=newAst("IF",0,yylineno);return IF;}
 {ELSE} {yylval.type_tnode=newAst("ELSE",0,yylineno); return ELSE;}
@@ -114,20 +111,8 @@ AERROR .
 {RP} {yylval.type_tnode=newAst("RP",0,yylineno); return RP;}
 {LB} {yylval.type_tnode=newAst("LB",0,yylineno); return LB;}
 {RB} {yylval.type_tnode=newAst("RB",0,yylineno); return RB;}
-{LC} {
-	yylval.type_tnode=newAst("LC",0,yylineno); 
-	if(inStruc){
-		// 结构体定义内部存在LC左花括号
-		LCnum++;
-	}
-	return LC;}
-{RC} {
-	yylval.type_tnode=newAst("RC",0,yylineno); 
-	if(inStruc){
-		// 结构体定义内部存在RC右花括号
-		LCnum--;
-	}
-	return RC;}
+{LC} {yylval.type_tnode=newAst("LC",0,yylineno); return LC;}
+{RC} {yylval.type_tnode=newAst("RC",0,yylineno); return RC;}
 {RELOP} {yylval.type_tnode=newAst("RELOP",0,yylineno); return RELOP;}
  /*标识符*/
 {ID} {yylval.type_tnode=newAst("ID",0,yylineno); return ID;}
